@@ -198,11 +198,11 @@ Part 1b - Step 2: Assignment
 
 Thing 1) Treadmill
 5 properties:
-    1) current speed
-    2) current inclination
-    3) total distance simulated
-    4) session distance simulated
-    5) maximum weight allowance
+    1) current speed (float)
+    2) current inclination (float)
+    3) total distance simulated (float)
+    4) session distance simulated (float)
+    5) maximum weight allowance (int)
 3 things it can do:
     1) rotate the belt
     2) incline the surface
@@ -210,11 +210,11 @@ Thing 1) Treadmill
 
 Thing 2) Helicopter
 5 properties:
-    1) number of main rotor blades
-    2) number of seats
-    3) fuel capacity
-    4) maximum range
-    5) colour
+    1) number of main rotor blades (int)
+    2) number of seats (int)
+    3) fuel capacity (float)
+    4) maximum range (float)
+    5) colour (std::string)
 3 things it can do:
     1) take off
     2) travel
@@ -222,11 +222,11 @@ Thing 2) Helicopter
 
 Thing 3) Cat
 5 properties:
-    1) fur pattern
-    2) fur colour
-    3) eye color
-    4) sex
-    5) age
+    1) fur pattern (std::string)
+    2) fur colour (std::string)
+    3) eye color (std::string)
+    4) sex (char)
+    5) age (int)
 3 things it can do:
     1) hunt
     2) eat
@@ -234,11 +234,11 @@ Thing 3) Cat
 
 Thing 4) Liquid
 5 properties:
-    1) boiling point
-    2) freezing point
-    3) evaporation point
-    4) viscocity
-    5) temperature
+    1) boiling point (double)
+    2) freezing point (double)
+    3) evaporation point (double)
+    4) viscocity (double)
+    5) temperature (double)
 3 things it can do:
     1) freeze
     2) boil
