@@ -434,65 +434,65 @@ example:
     You will need to provide 5 properties and 3 member functions of that Engine object in plain English.
     Remember to pick properties that can be represented with 'int float double bool char std::string'.
 
-Thing 5)
+Thing 5) Roots
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) primary roots
+    2) secondary roots
+    3) total volume
+    4) total length
+    5) density
 3 things it can do:
-    1)
-    2)
-    3)
+    1) absorb water
+    2) absorb nutrients
+    3) store energy
 
-Thing 6)
+Thing 6) Trunk
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) bark thickness
+    2) sapwood thickness
+    3) heartwood thicnkess
+    4) pith radius
+    5) total radius
 3 things it can do:
-    1)
-    2)
-    3)
+    1) transport water
+    2) transport nutrients
+    3) resist wind
 
-Thing 7)
+Thing 7) Branches
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) length
+    2) child branches
+    3) buds
+    4) leaves
+    5) age
 3 things it can do:
-    1)
-    2)
-    3)
+    1) absorb water
+    2) support trunk
+    3) bind soil
 
-Thing 8)
+Thing 8) Leaves
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) length
+    2) width
+    3) colour
+    4) veins
+    5) hydration level
 3 things it can do:
-    1)
-    2)
-    3)
+    1) grow
+    2) rustle
+    3) change colour
 
-Thing 9)
+Thing 9) Fruit
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) seeds
+    2) endosperm level
+    3) hydration level
+    4) epicarp thickness
+    5) mesocarp thickness
 3 things it can do:
-    1)
-    2)
-    3)
+    1) protect seeds
+    2) disperse seeds
+    3) feed seeds
  */
 
 /*
