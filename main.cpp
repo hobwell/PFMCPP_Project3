@@ -196,53 +196,53 @@ Part 1b - Step 2: Assignment
         c) pick properties that can eventually be represented with 
         'int float double bool char std::string'.
 
-Thing 1)
+Thing 1) Treadmill
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) current speed
+    2) current inclination
+    3) total distance simulated
+    4) session distance simulated
+    5) maximum weight allowance
 3 things it can do:
-    1)
-    2)
-    3)
+    1) rotate the belt
+    2) incline the surface
+    3) display current speed
 
-Thing 2)
+Thing 2) Helicopter
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) number of main rotor blades
+    2) number of seats
+    3) fuel capacity
+    4) maximum range
+    5) colour
 3 things it can do:
-    1)
-    2)
-    3)
+    1) take off
+    2) travel
+    3) land
 
-Thing 3)
+Thing 3) Cat
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) fur pattern
+    2) fur colour
+    3) eye color
+    4) sex
+    5) age
 3 things it can do:
-    1)
-    2)
-    3)
+    1) hunt
+    2) eat
+    3) purr
 
-Thing 4)
+Thing 4) Liquid
 5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
+    1) boiling point
+    2) freezing point
+    3) evaporation point
+    4) viscocity
+    5) temperature
 3 things it can do:
-    1)
-    2)
-    3)
+    1) freeze
+    2) boil
+    3) evaporate
 */
 
 /*
