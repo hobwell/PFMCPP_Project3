@@ -83,51 +83,51 @@ Main Object: Car Interior
         Name 4 nouns you'll find on the [Sub Object]
             1) paddle shifters
             2) 'cruise control' controls
-            3) 
-            4) 
+            3) horn button
+            4) 'phone control' controls
         Name 2 actions that the [Sub Object] can do:
             1) adjust cruise control settings.
-            2)
+            2) engage the horn
         
     Sub Object: Instrument Cluster
         Name 4 nouns you'll find on the [Sub Object]
-            1)
-            2)
-            3)
-            4)
+            1) speedometer
+            2) odometer
+            3) tachometer
+            4) fuel gauge
         Name 3 actions that the [Sub Object] can do:
-            1)
-            2)
-            3)
+            1) accumulate distance the car has travelled
+            2) show how fast the car is moving
+            3) show remaining fuel
     
     Sub Object: Environment Controls
         Name 3 nouns you'll find on the [Sub Object]
-            1)
-            2)
-            3)
+            1) temperature dials
+            2) fan speed controls
+            3) off button
         Name 3 actions that the [Sub Object] can do:
-            1)
-            2)
-            3)
+            1) adjust target temperature
+            2) adjust fan speed
+            3) turn off climate control
 
     Sub Object: Infotainment System
         Name 3 nouns you'll find on the [Sub Object]
-            1)
-            2)
-            3)
+            1) Answer cell phone button
+            2) Radio button
+            3) volume control
         Name 3 actions that the [Sub Object] can do:
-            1)
-            2)
-            3)
+            1) Answer an incoming call
+            2) Turn on the radio
+            3) Adjust the volume
 
     Sub Object: Seat 
         Name 3 nouns you'll find on the [Sub Object]
-            1)
-            2)
-            3)
+            1) Slide lever
+            2) Seat-back adjustment lever
+            3) Window controls
         Name 2 actions that the [Sub Object] can do:
-            1)
-            2)
+            1) Adjust legroom
+            2) Adjust window position
 */
 
 /*
