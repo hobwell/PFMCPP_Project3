@@ -196,53 +196,6 @@ Part 1b - Step 2: Assignment
         c) pick properties that can eventually be represented with 
         'int float double bool char std::string'.
 
-Thing 1) Treadmill
-5 properties:
-    1) current speed (float)
-    2) current inclination (float)
-    3) total distance simulated (float)
-    4) session distance simulated (float)
-    5) maximum weight allowance (int)
-3 things it can do:
-    1) rotate the belt
-    2) incline the surface
-    3) display current speed
-
-Thing 2) Helicopter
-5 properties:
-    1) number of main rotor blades (int)
-    2) number of seats (int)
-    3) fuel capacity (float)
-    4) maximum range (float)
-    5) colour (std::string)
-3 things it can do:
-    1) take off
-    2) travel
-    3) land
-
-Thing 3) Cat
-5 properties:
-    1) fur pattern (std::string)
-    2) fur colour (std::string)
-    3) eye color (std::string)
-    4) sex (char)
-    5) age (int)
-3 things it can do:
-    1) hunt
-    2) eat
-    3) purr
-
-Thing 4) Liquid
-5 properties:
-    1) boiling point (double)
-    2) freezing point (double)
-    3) evaporation point (double)
-    4) viscocity (double)
-    5) temperature (double)
-3 things it can do:
-    1) freeze
-    2) boil
-    3) evaporate
 */
 
 /*
@@ -337,17 +290,6 @@ Define an object that is made of 5 sub-objects.
     These 5 sub-objects will not be defined using Primitives, but instead will be their own UDTs 
     you'll define these 5 sub-objects in Part 1d.
 
-Thing 10) 
-5 properties:
-    1) Root System
-    2) Trunk
-    3) Branches
-    4) Leaves
-    5) Fruit
-3 things it can do:
-    1) Grow
-    2) Photosynthesize
-    3) Reproduce
  */
 
  /*
@@ -434,6 +376,106 @@ example:
     You will need to provide 5 properties and 3 member functions of that Engine object in plain English.
     Remember to pick properties that can be represented with 'int float double bool char std::string'.
 
+ */
+
+/*
+=================
+Part 1d - Step 3: Commit
+=================
+Now that you've made changes to the code, make a commit!
+Be sure to make the commit message meaningful.
+*/
+
+/*
+================
+Part 1d - Step 4: Assignment
+================
+    - write the name of the primitive type you'll be using after each property for UDTs 5 - 9.
+    - You already did this for UDTs 1-4 in Part 1c.
+    - Pick properties that can be represented with 'int float double bool char std::string'
+    
+example: 
+    Display:
+        Number of Pixels (int)
+        Amount of Power consumed (milliwatt-hours) (float)
+        Brightness (double)
+        width in cm (int)
+        height in cm (int)
+*/
+
+/*
+=================
+Part 1d - Step 5: Commit
+=================
+Now that you've made changes to the code, make a commit!
+Be sure to make the commit message meaningful.
+*/
+
+/*
+===================
+Part 1d - Step 6: assignment
+===================
+You've just defined 10 UDTs!
+4 of them are unrelated (UDTs 1-4).
+5 of them form the sub-objects that make up the 10th UDT. 
+
+MOVE THEM to the space below this block comment and put them in numerical order 
+(1 - 10).
+    DO NOT COPY. 
+    CUT AND PASTE. 
+    I do not want to see 2 copies of your Plain-English UDTs.  
+    I only want to see the 10 UDTs written BELOW this block comment, in numerical order (1 - 10).
+    simply CUT and PASTE them in the space provided below:
+*/
+
+Thing 1) Treadmill
+5 properties:
+    1) current speed (float)
+    2) current inclination (float)
+    3) total distance simulated (float)
+    4) session distance simulated (float)
+    5) maximum weight allowance (int)
+3 things it can do:
+    1) rotate the belt
+    2) incline the surface
+    3) display current speed
+
+Thing 2) Helicopter
+5 properties:
+    1) number of main rotor blades (int)
+    2) number of seats (int)
+    3) fuel capacity (float)
+    4) maximum range (float)
+    5) colour (std::string)
+3 things it can do:
+    1) take off
+    2) travel
+    3) land
+
+Thing 3) Cat
+5 properties:
+    1) fur pattern (std::string)
+    2) fur colour (std::string)
+    3) eye color (std::string)
+    4) sex (char)
+    5) age (int)
+3 things it can do:
+    1) hunt
+    2) eat
+    3) purr
+
+Thing 4) Liquid
+5 properties:
+    1) boiling point (double)
+    2) freezing point (double)
+    3) evaporation point (double)
+    4) viscocity (double)
+    5) temperature (double)
+3 things it can do:
+    1) freeze
+    2) boil
+    3) evaporate
+
 Thing 5) Roots
 5 properties:
     1) primary roots (int)
@@ -493,64 +535,18 @@ Thing 9) Fruit
     1) protect seeds
     2) disperse seeds
     3) feed seeds
- */
 
-/*
-=================
-Part 1d - Step 3: Commit
-=================
-Now that you've made changes to the code, make a commit!
-Be sure to make the commit message meaningful.
-*/
-
-/*
-================
-Part 1d - Step 4: Assignment
-================
-    - write the name of the primitive type you'll be using after each property for UDTs 5 - 9.
-    - You already did this for UDTs 1-4 in Part 1c.
-    - Pick properties that can be represented with 'int float double bool char std::string'
-    
-example: 
-    Display:
-        Number of Pixels (int)
-        Amount of Power consumed (milliwatt-hours) (float)
-        Brightness (double)
-        width in cm (int)
-        height in cm (int)
-*/
-
-/*
-=================
-Part 1d - Step 5: Commit
-=================
-Now that you've made changes to the code, make a commit!
-Be sure to make the commit message meaningful.
-*/
-
-/*
-===================
-Part 1d - Step 6: assignment
-===================
-You've just defined 10 UDTs!
-4 of them are unrelated (UDTs 1-4).
-5 of them form the sub-objects that make up the 10th UDT. 
-
-MOVE THEM to the space below this block comment and put them in numerical order 
-(1 - 10).
-    DO NOT COPY. 
-    CUT AND PASTE. 
-    I do not want to see 2 copies of your Plain-English UDTs.  
-    I only want to see the 10 UDTs written BELOW this block comment, in numerical order (1 - 10).
-    simply CUT and PASTE them in the space provided below:
-*/
-
-
-
-
-
-
-
+Thing 10) 
+5 properties:
+    1) Root System
+    2) Trunk
+    3) Branches
+    4) Leaves
+    5) Fruit
+3 things it can do:
+    1) Grow
+    2) Photosynthesize
+    3) Reproduce
 
 /*
 =================
