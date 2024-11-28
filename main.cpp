@@ -436,11 +436,11 @@ example:
 
 Thing 5) Roots
 5 properties:
-    1) primary roots
-    2) secondary roots
-    3) total volume
-    4) total length
-    5) density
+    1) primary roots (int)
+    2) secondary roots (int)
+    3) total volume (float)
+    4) total length (float)
+    5) density (float)
 3 things it can do:
     1) absorb water
     2) absorb nutrients
@@ -448,11 +448,11 @@ Thing 5) Roots
 
 Thing 6) Trunk
 5 properties:
-    1) bark thickness
-    2) sapwood thickness
-    3) heartwood thicnkess
-    4) pith radius
-    5) total radius
+    1) bark thickness (float)
+    2) sapwood thickness (float)
+    3) heartwood thicnkess (float)
+    4) pith radius (float)
+    5) total radius (float)
 3 things it can do:
     1) transport water
     2) transport nutrients
@@ -460,11 +460,11 @@ Thing 6) Trunk
 
 Thing 7) Branches
 5 properties:
-    1) length
-    2) child branches
-    3) buds
-    4) leaves
-    5) age
+    1) length (float)
+    2) child branches (int)
+    3) buds (int)
+    4) leaves (int)
+    5) age (int)
 3 things it can do:
     1) absorb water
     2) support trunk
@@ -472,11 +472,11 @@ Thing 7) Branches
 
 Thing 8) Leaves
 5 properties:
-    1) length
-    2) width
-    3) colour
-    4) veins
-    5) hydration level
+    1) length (float)
+    2) width (float)
+    3) colour (std::string)
+    4) veins (int)
+    5) hydration level (float)
 3 things it can do:
     1) grow
     2) rustle
@@ -484,11 +484,11 @@ Thing 8) Leaves
 
 Thing 9) Fruit
 5 properties:
-    1) seeds
-    2) endosperm level
-    3) hydration level
-    4) epicarp thickness
-    5) mesocarp thickness
+    1) seeds (int)
+    2) endosperm level (float)
+    3) hydration level (float)
+    4) epicarp thickness (float)
+    5) mesocarp thickness (float)
 3 things it can do:
     1) protect seeds
     2) disperse seeds
