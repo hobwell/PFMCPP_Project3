@@ -536,7 +536,7 @@ Thing 9) Fruit
     2) disperse seeds
     3) feed seeds
 
-Thing 10) 
+Thing 10) Tree
 5 properties:
     1) Root System
     2) Trunk
