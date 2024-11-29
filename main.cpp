@@ -430,182 +430,172 @@ MOVE THEM to the space below this block comment and put them in numerical order
 
 /*
 Thing 1) Treadmill
-5 properties:
-    1) current speed (float)
-    2) current inclination (float)
-    3) total distance simulated (float)
-    4) session distance simulated (float)
-    5) maximum weight allowance (int)
-3 things it can do:
-    1) rotate the belt
-    2) incline the surface
-    3) display current speed
 */
 struct Treadmill
 {
-
+// 5 properties:
+//     1) current speed (float)
+//     2) current inclination (float)
+//     3) total distance simulated (float)
+//     4) session distance simulated (float)
+//     5) maximum weight allowance (int)
+// 3 things it can do:
+//     1) rotate the belt
+//     2) incline the surface
+//  //    3) display current speed
 };
 
 /*
 Thing 2) Helicopter
-5 properties:
-    1) number of main rotor blades (int)
-    2) number of seats (int)
-    3) fuel capacity (float)
-    4) maximum range (float)
-    5) colour (std::string)
-3 things it can do:
-    1) take off
-    2) travel
-    3) land
 */
 struct Helicopter
 {
-
+// 5 properties:
+//     1) number of main rotor blades (int)
+//     2) number of seats (int)
+//     3) fuel capacity (float)
+//     4) maximum range (float)
+//     5) colour (std::string)
+// 3 things it can do:
+//     1) take off
+//     2) travel
+//     3) land
 };
 
 /*
 Thing 3) Cat
-5 properties:
-    1) fur pattern (std::string)
-    2) fur colour (std::string)
-    3) eye color (std::string)
-    4) sex (char)
-    5) age (int)
-3 things it can do:
-    1) hunt
-    2) eat
-    3) purr
 */
 struct Cat
 {
-
+// 5 properties:
+//     1) fur pattern (std::string)
+//     2) fur colour (std::string)
+//     3) eye color (std::string)
+//     4) sex (char)
+//     5) age (int)
+// 3 things it can do:
+//     1) hunt
+//     2) eat
+//     3) purr
 };
 
 /*
 Thing 4) Liquid
-5 properties:
-    1) boiling point (double)
-    2) freezing point (double)
-    3) evaporation point (double)
-    4) viscocity (double)
-    5) temperature (double)
-3 things it can do:
-    1) freeze
-    2) boil
-    3) evaporate
 */
 struct Liquid
 {
-
+// 5 properties:
+//     1) boiling point (double)
+//     2) freezing point (double)
+//     3) evaporation point (double)
+//     4) viscocity (double)
+//     5) temperature (double)
+// 3 things it can do:
+//     1) freeze
+//     2) boil
+//     3) evaporate
 };   
 
 /*
 Thing 5) Roots
-5 properties:
-    1) primary roots (int)
-    2) secondary roots (int)
-    3) total volume (float)
-    4) total length (float)
-    5) density (float)
-3 things it can do:
-    1) absorb water
-    2) absorb nutrients
-    3) store energy
 */
 struct Roots
 {
-
+// 5 properties:
+//     1) primary roots (int)
+//     2) secondary roots (int)
+//     3) total volume (float)
+//     4) total length (float)
+//     5) density (float)
+// 3 things it can do:
+//     1) absorb water
+//     2) absorb nutrients
+//     3) store energy
 };
 
 /*
 Thing 6) Trunk
-5 properties:
-    1) bark thickness (float)
-    2) sapwood thickness (float)
-    3) heartwood thicnkess (float)
-    4) pith radius (float)
-    5) total radius (float)
-3 things it can do:
-    1) transport water
-    2) transport nutrients
-    3) resist wind
 */
 struct Trunk
 {
-
+// 5 properties:
+//     1) bark thickness (float)
+//     2) sapwood thickness (float)
+//     3) heartwood thicnkess (float)
+//     4) pith radius (float)
+//     5) total radius (float)
+// 3 things it can do:
+//     1) transport water
+//     2) transport nutrients
+//     3) resist wind
 };
 
 /*
 Thing 7) Branches
-5 properties:
-    1) length (float)
-    2) child branches (int)
-    3) buds (int)
-    4) leaves (int)
-    5) age (int)
-3 things it can do:
-    1) absorb water
-    2) support trunk
-    3) bind soil
 */
 struct Branches
 {
-
+// 5 properties:
+//     1) length (float)
+//     2) child branches (int)
+//     3) buds (int)
+//     4) leaves (int)
+//     5) age (int)
+// 3 things it can do:
+//     1) absorb water
+//     2) support trunk
+//     3) bind soil// 
 };
 
 /*
 Thing 8) Leaves
-5 properties:
-    1) length (float)
-    2) width (float)
-    3) colour (std::string)
-    4) veins (int)
-    5) hydration level (float)
-3 things it can do:
-    1) grow
-    2) rustle
-    3) change colour
 */
 struct Leaves
 {
-
+// 5 properties:
+//     1) length (float)
+//     2) width (float)
+//     3) colour (std::string)
+//     4) veins (int)
+//     5) hydration level (float)
+// 3 things it can do:
+//     1) grow
+//     2) rustle
+//     3) change colour
 };
 
 /*
 Thing 9) Fruit
-5 properties:
-    1) seeds (int)
-    2) endosperm level (float)
-    3) hydration level (float)
-    4) epicarp thickness (float)
-    5) mesocarp thickness (float)
-3 things it can do:
-    1) protect seeds
-    2) disperse seeds
-    3) feed seeds
 */
 struct Fruit
 {
-
+// 5 properties:
+//     1) seeds (int)
+//     2) endosperm level (float)
+//     3) hydration level (float)
+//     4) epicarp thickness (float)
+//     5) mesocarp thickness (float)
+// 3 things it can do:
+//     1) protect seeds
+//     2) disperse seeds
+//     3) feed seeds
 };
 
 /*
 Thing 10) Tree
-5 properties:
-    1) Root System
-    2) Trunk
-    3) Branches
-    4) Leaves
-    5) Fruit
-3 things it can do:
-    1) Grow
-    2) Photosynthesize
-    3) Reproduce
 */
 struct Tree
 {
-
+// 5 properties:
+//     1) Root System
+//     2) Trunk
+//     3) Branches
+//     4) Leaves
+//     5) Fruit
+// 3 things it can do:
+//     1) Grow
+//     2) Photosynthesize
+//     3) Reproduce
 };
     
 /*
