@@ -428,6 +428,7 @@ MOVE THEM to the space below this block comment and put them in numerical order
     simply CUT and PASTE them in the space provided below:
 */
 
+/*
 Thing 1) Treadmill
 5 properties:
     1) current speed (float)
@@ -439,7 +440,13 @@ Thing 1) Treadmill
     1) rotate the belt
     2) incline the surface
     3) display current speed
+*/
+struct Treadmill
+{
 
+};
+
+/*
 Thing 2) Helicopter
 5 properties:
     1) number of main rotor blades (int)
@@ -451,7 +458,13 @@ Thing 2) Helicopter
     1) take off
     2) travel
     3) land
+*/
+struct Helicopter
+{
 
+};
+
+/*
 Thing 3) Cat
 5 properties:
     1) fur pattern (std::string)
@@ -463,7 +476,13 @@ Thing 3) Cat
     1) hunt
     2) eat
     3) purr
+*/
+struct Cat
+{
 
+};
+
+/*
 Thing 4) Liquid
 5 properties:
     1) boiling point (double)
@@ -475,7 +494,13 @@ Thing 4) Liquid
     1) freeze
     2) boil
     3) evaporate
+*/
+struct Liquid
+{
 
+};   
+
+/*
 Thing 5) Roots
 5 properties:
     1) primary roots (int)
@@ -487,7 +512,13 @@ Thing 5) Roots
     1) absorb water
     2) absorb nutrients
     3) store energy
+*/
+struct Roots
+{
 
+};
+
+/*
 Thing 6) Trunk
 5 properties:
     1) bark thickness (float)
@@ -499,7 +530,13 @@ Thing 6) Trunk
     1) transport water
     2) transport nutrients
     3) resist wind
+*/
+struct Trunk
+{
 
+};
+
+/*
 Thing 7) Branches
 5 properties:
     1) length (float)
@@ -511,7 +548,13 @@ Thing 7) Branches
     1) absorb water
     2) support trunk
     3) bind soil
+*/
+struct Branches
+{
 
+};
+
+/*
 Thing 8) Leaves
 5 properties:
     1) length (float)
@@ -523,7 +566,13 @@ Thing 8) Leaves
     1) grow
     2) rustle
     3) change colour
+*/
+struct Leaves
+{
 
+};
+
+/*
 Thing 9) Fruit
 5 properties:
     1) seeds (int)
@@ -535,7 +584,13 @@ Thing 9) Fruit
     1) protect seeds
     2) disperse seeds
     3) feed seeds
+*/
+struct Fruit
+{
 
+};
+
+/*
 Thing 10) Tree
 5 properties:
     1) Root System
@@ -547,7 +602,12 @@ Thing 10) Tree
     1) Grow
     2) Photosynthesize
     3) Reproduce
+*/
+struct Tree
+{
 
+};
+    
 /*
 =================
 Part 1d - Step 7: Commit
