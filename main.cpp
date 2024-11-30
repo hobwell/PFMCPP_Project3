@@ -444,6 +444,29 @@ struct Treadmill
     // maximum weight allowance (int)
     int maximumWeightAllowanceKg = 300;
 
+    // a simple display for a value and it's name
+    struct Display 
+    {
+        // brightness (float)
+        float brightness = 1.0f;
+        // name of the current value being displayed
+        std::string currentValue = "speed";
+        // name of the unit of the current value being displayed
+        std::string unit = "km/h";
+        // the value being displayed
+        float value = 0.0f;
+        // the color the value is being displayed in
+        std::string valueColor = "green";
+
+        // change the currently displayed value
+        void changeValue(float newValue, std::string font = "Arial", int fontSize = 18, std::string color = "green");
+
+        // change the currently displayed unit
+        void changeUnit(std::string newUnit, std::string font = "Arial", int fontSize = 18, std::string color = "red");
+
+        void changeBrightness(float newBrightness = 0.75f);
+    };
+
     // rotate the belt    
     void rotateBelt(float speeedKph);
 
@@ -654,6 +677,29 @@ struct Fruit
     float epicarpThicknessCm = 0.05f;
     // mesocarp thickness (float)
     float mesocarpThicknessCm = 0.05f;
+
+    struct Seed 
+    {
+        // weight (float)
+        float weightGrams = 0.5f;
+        // seed coat integrity
+        float seedCoatIntegrity = 1.0f;
+        // germination days (int)
+        int germinationDays = 14;
+        // stored energy (float)
+        float storedEnergy = 1.0f;
+        // days dormant
+        int daysDormant = 0;
+
+        // grow root
+        bool growRoot(bool germinated = false); // returns true if root grown
+
+        // grow a stem
+        bool growStem(bool germinated = false); // returns true if stem grown
+
+        // grow leaves
+        int growLeaves(bool germinated = false, int numLeaves = 2); // returns number of leaves grown
+    };
 
     // protect seeds
     void protectSeeds();
