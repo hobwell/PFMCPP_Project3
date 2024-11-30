@@ -443,10 +443,15 @@ struct Treadmill
     float sessionDistanceSimulatedKm = 0.0f;
     // maximum weight allowance (int)
     int maximumWeightAllowanceKg = 300;
-    // 3 things it can do:
-    //     1) rotate the belt
-    //     2) incline the surface
-    //     3) display current speed
+
+    // rotate the belt    
+    void rotateBelt(float speeedKph);
+
+    // incline the surface
+    void incline(float inclinationDegrees);
+
+    // display current speed
+    float displayCurrentSpeed(); // returns the current speed in Km/h
 };
 
 /*
@@ -464,10 +469,15 @@ struct Helicopter
     float maximumRangeKm = 650.0f;
     // colour (std::string)
     std::string colour = "white";
-    // 3 things it can do:
-    //     1) take off
-    //     2) travel
-    //     3) land
+
+    // take off
+    void ascend(float speedKph);
+    
+    // travel
+    void travel(float speedKph, float bearingRads, float distanceKm);
+
+    // land
+    void descend(float speedKph);
 };
 
 /*
@@ -485,10 +495,15 @@ struct Cat
     char sex = 'M';
     // age (int)
     int age = 3;
-    // 3 things it can do:
-    //     1) hunt
-    //     2) eat
-    //     3) purr
+
+    // hunt
+    bool hunt(std::string creature); // returns true if a creature was caught
+
+    // eat
+    void eat(float amountOfFoodKg);
+
+    // purr
+    void purr(float volumeDb);
 };
 
 /*
@@ -500,16 +515,21 @@ struct Liquid
     double boilingPointC = 100.0;
     // freezing point (double)
     double freezingPointC = 0.0;
-    // surface tension (double) -- changed from evaporation Point
-    double surfaceTension = 71.99;
+    // volume (double) -- changed from surface tension
+    double volumeL = 7;
     // viscocity (double)
     double viscocityCp = 0.89;
     // temperature (double)
     double temperatureC = 18.0;
-    // 3 things it can do:
-    //     1) freeze
-    //     2) boil
-    //     3) evaporate
+    
+    // freeze
+    void freeze();
+
+    // boil
+    void boil();
+    
+    // evaporate
+    double evaporate(float surfaceArea); // returns the volume evaporated
 };   
 
 /*
@@ -527,10 +547,15 @@ struct Roots
     float totalLengthKm = 33.12f;
     // density (float)
     float densityKgPerL = 0.0615f;
-    // 3 things it can do:
-    //     1) absorb water
-    //     2) absorb nutrients
-    //     3) store energy
+
+    // absorb water
+    void absorbWater(float volumeL);
+
+    // absorb nutrients
+    void absorbNutrients(float volumeL);
+    
+    // store energy
+    float storeEnergy(float newEnergy); // returns the current total energy stored
 };
 
 /*
@@ -548,10 +573,15 @@ struct Trunk
     float pithRadiusCm = 0.21565f;
     // total radius (float)
     float totalRadiusCm = 23.57965f;
-    // 3 things it can do:
-    //     1) transport water
-    //     2) transport nutrients
-    //     3) resist wind
+    
+    // transport water
+    void transportWater(float volumeL);
+
+    // transport nutrients
+    void transportNutrients(float volumeL);
+    
+    // resist wind
+    float resistWind(float speedKph); // returns trunk integrity (%)
 };
 
 /*
@@ -570,10 +600,15 @@ struct Branch
     int leaves = 50;
     // age (int)
     int age = 4;
-    // 3 things it can do:
-    //     1) absorb water
-    //     2) support trunk
-    //     3) bind soil// 
+
+    // support leaves
+    void supportLeaves(int maxLeaves);
+
+    // transport water
+    void transportWater(float volumeL);
+
+    // transport nutrients
+    void transportNutrients(float volumeL);
 };
 
 /*
@@ -592,10 +627,15 @@ struct Leaf
     int veins = 16;
     // hydration level (float)
     float hydrationLevel = 0.85f;
-    // 3 things it can do:
-    //     1) grow
-    //     2) rustle
-    //     3) change colour
+    
+    // grow
+    void grow();
+
+    // photosynthesize
+    float photosynthesize(float sunlight); // returns glucose produced
+
+    // change colour
+    void changeColour(std::string newColour);
 };
 
 /*
@@ -614,10 +654,15 @@ struct Fruit
     float epicarpThicknessCm = 0.05f;
     // mesocarp thickness (float)
     float mesocarpThicknessCm = 0.05f;
-    // 3 things it can do:
-    //     1) protect seeds
-    //     2) disperse seeds
-    //     3) feed seeds
+
+    // protect seeds
+    void protectSeeds();
+
+    // disperse seeds
+    void disperseSeeds(float distanceMeters);
+    
+    // feed seeds
+    float feedSeeds(); // returns the amount of remaining food in micrograms
 };
 
 /*
@@ -637,10 +682,15 @@ struct Tree
     Leaf leaf;
     // Fruit
     Fruit fruit;
-    // 3 things it can do:
-    //     1) Grow
-    //     2) Photosynthesize
-    //     3) Reproduce
+
+    // Produce Leaves
+    float produceLeaves(int numBranches); // returns the number of leaves produced
+
+    // Procuce Flowers
+    int produceFlowers(int numLeaves); // returns the number of flowers produced
+
+    // Procuce Fruit
+    void produceFruit(int numFlowers); // returns the number of fruits produced
 };
     
 /*
