@@ -444,28 +444,33 @@ struct Treadmill
     // maximum weight allowance (int)
     int maximumWeightAllowanceKg = 300;
 
-    // a simple display for a value and it's name
-    struct Display 
+    // display information for a value
+    struct ValueDisplay
     {
-        // brightness (float)
-        float brightness = 1.0f;
         // name of the current value being displayed
-        std::string currentValue = "speed";
+        std::string name = "speed";
         // name of the unit of the current value being displayed
         std::string unit = "km/h";
         // the value being displayed
         float value = 0.0f;
-        // the color the value is being displayed in
-        std::string valueColor = "green";
+        // the colour the value and unit should be displayed in
+        std::string colour = "green";
+        // font to be used for the display of this value
+        std::string font = "Arial";
 
-        // change the currently displayed value
-        void changeValue(float newValue, std::string font = "Arial", int fontSize = 18, std::string color = "green");
+        // updates the current value
+        void updateValue(float newValue);
 
-        // change the currently displayed unit
-        void changeUnit(std::string newUnit, std::string font = "Arial", int fontSize = 18, std::string color = "red");
+        // changes font
+        void changeFont(std::string font = "Arial", int fontSize = 18);
 
-        void changeBrightness(float newBrightness = 0.75f);
+        // changes colour
+        void changeColour(std::string color = "green");
     };
+
+    ValueDisplay speedDisplay;
+
+    ValueDisplay inclineDisplay;
 
     // rotate the belt    
     void rotateBelt(float speeedKph);
@@ -473,8 +478,8 @@ struct Treadmill
     // incline the surface
     void incline(float inclinationDegrees);
 
-    // display current speed
-    float displayCurrentSpeed(); // returns the current speed in Km/h
+    // show a value
+    void display(ValueDisplay displayValue);
 };
 
 /*
@@ -683,7 +688,7 @@ struct Fruit
         // weight (float)
         float weightGrams = 0.5f;
         // seed coat integrity
-        float seedCoatIntegrity = 1.0f;
+        float coatIntegrity = 1.0f;
         // germination days (int)
         int germinationDays = 14;
         // stored energy (float)
@@ -701,14 +706,14 @@ struct Fruit
         int growLeaves(bool germinated = false, int numLeaves = 2); // returns number of leaves grown
     };
 
-    // protect seeds
-    void protectSeeds();
+    // protect seed (raise a seed's coatIntegrity)
+    void protectSeed(float increment);
 
-    // disperse seeds
-    void disperseSeeds(float distanceMeters);
+    // disperse a seed
+    void disperseSeed(Seed seed, float distanceKm);
     
-    // feed seeds
-    float feedSeeds(); // returns the amount of remaining food in micrograms
+    // feed seed
+    float feedSeed(Seed seed, float energy); // returns the amount of food remaining in the fruit in micrograms
 };
 
 /*
