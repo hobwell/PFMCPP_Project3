@@ -433,16 +433,20 @@ Thing 1) Treadmill
 */
 struct Treadmill
 {
-// 5 properties:
-//     1) current speed (float)
-//     2) current inclination (float)
-//     3) total distance simulated (float)
-//     4) session distance simulated (float)
-//     5) maximum weight allowance (int)
-// 3 things it can do:
-//     1) rotate the belt
-//     2) incline the surface
-//  //    3) display current speed
+    // current speed (float)
+    float currentSpeedKph = 0.0f;
+    // current inclination (float)
+    float currentInclinationDegrees = 0.0f;
+    // total distance simulated (float)
+    float totalDistanceSimulatedKm = 0.0f;
+    // session distance simulated (float)
+    float sessionDistanceSimulatedKm = 0.0f;
+    // maximum weight allowance (int)
+    int maximumWeightAllowanceKg = 300;
+    // 3 things it can do:
+    //     1) rotate the belt
+    //     2) incline the surface
+    //     3) display current speed
 };
 
 /*
@@ -450,16 +454,20 @@ Thing 2) Helicopter
 */
 struct Helicopter
 {
-// 5 properties:
-//     1) number of main rotor blades (int)
-//     2) number of seats (int)
-//     3) fuel capacity (float)
-//     4) maximum range (float)
-//     5) colour (std::string)
-// 3 things it can do:
-//     1) take off
-//     2) travel
-//     3) land
+    // number of main rotor blades (int)
+    int numMainRotorBlades = 4;
+    // number of seats (int)
+    int numSeats = 4;
+    // fuel capacity (float)
+    float fuelCapacityL = 550.0f;
+    //  maximum range (float)
+    float maximumRangeKm = 650.0f;
+    // colour (std::string)
+    std::string colour = "white";
+    // 3 things it can do:
+    //     1) take off
+    //     2) travel
+    //     3) land
 };
 
 /*
@@ -467,16 +475,20 @@ Thing 3) Cat
 */
 struct Cat
 {
-// 5 properties:
-//     1) fur pattern (std::string)
-//     2) fur colour (std::string)
-//     3) eye color (std::string)
-//     4) sex (char)
-//     5) age (int)
-// 3 things it can do:
-//     1) hunt
-//     2) eat
-//     3) purr
+    // fur pattern (std::string)
+    std::string furPattern = "tabby";
+    // fur colour (std::string)
+    std::string furColour = "orange";
+    // eye color (std::string)
+    std::string eyeColor = "green";
+    // sex (char)
+    char sex = 'M';
+    // age (int)
+    int age = 3;
+    // 3 things it can do:
+    //     1) hunt
+    //     2) eat
+    //     3) purr
 };
 
 /*
@@ -484,16 +496,20 @@ Thing 4) Liquid
 */
 struct Liquid
 {
-// 5 properties:
-//     1) boiling point (double)
-//     2) freezing point (double)
-//     3) evaporation point (double)
-//     4) viscocity (double)
-//     5) temperature (double)
-// 3 things it can do:
-//     1) freeze
-//     2) boil
-//     3) evaporate
+    // boiling point (double)
+    double boilingPointC = 100.0;
+    // freezing point (double)
+    double freezingPointC = 0.0;
+    // surface tension (double) -- changed from evaporation Point
+    double surfaceTension = 71.99;
+    // viscocity (double)
+    double viscocityCp = 0.89;
+    // temperature (double)
+    double temperatureC = 18.0;
+    // 3 things it can do:
+    //     1) freeze
+    //     2) boil
+    //     3) evaporate
 };   
 
 /*
@@ -501,16 +517,20 @@ Thing 5) Roots
 */
 struct Roots
 {
-// 5 properties:
-//     1) primary roots (int)
-//     2) secondary roots (int)
-//     3) total volume (float)
-//     4) total length (float)
-//     5) density (float)
-// 3 things it can do:
-//     1) absorb water
-//     2) absorb nutrients
-//     3) store energy
+    // primary roots (int)
+    int primaryRoots = 1;
+    // secondary roots (int)
+    int secondaryRoots = 1500;
+    // total volume (float)
+    float totalVolumeL = 2600.0f;
+    // total length (float)
+    float totalLengthKm = 33.12f;
+    // density (float)
+    float densityKgPerL = 0.0615f;
+    // 3 things it can do:
+    //     1) absorb water
+    //     2) absorb nutrients
+    //     3) store energy
 };
 
 /*
@@ -518,84 +538,109 @@ Thing 6) Trunk
 */
 struct Trunk
 {
-// 5 properties:
-//     1) bark thickness (float)
-//     2) sapwood thickness (float)
-//     3) heartwood thicnkess (float)
-//     4) pith radius (float)
-//     5) total radius (float)
-// 3 things it can do:
-//     1) transport water
-//     2) transport nutrients
-//     3) resist wind
+    // bark thickness (float)
+    float barkThicknessCm = 1.5f;
+    // sapwood thickness (float)
+    float sapwoodThicknessCm = 3.25f;
+    // heartwood thicnkess (float)
+    float heartwoodThicknessCm = 18.614f;
+    // pith radius (float)
+    float pithRadiusCm = 0.21565f;
+    // total radius (float)
+    float totalRadiusCm = 23.57965f;
+    // 3 things it can do:
+    //     1) transport water
+    //     2) transport nutrients
+    //     3) resist wind
 };
 
 /*
 Thing 7) Branches
+In retrospect, I was thinking in terms of collections, (i.e. a tree has many branches) but I conceived the UDT as a single branch.
 */
-struct Branches
+struct Branch
 {
-// 5 properties:
-//     1) length (float)
-//     2) child branches (int)
-//     3) buds (int)
-//     4) leaves (int)
-//     5) age (int)
-// 3 things it can do:
-//     1) absorb water
-//     2) support trunk
-//     3) bind soil// 
+    // length (float)
+    float lengthCm = 12.0f;
+    // child branches (int)
+    int childBranches = 5;
+    // buds (int)
+    int buds = 5;
+    // leaves (int)
+    int leaves = 50;
+    // age (int)
+    int age = 4;
+    // 3 things it can do:
+    //     1) absorb water
+    //     2) support trunk
+    //     3) bind soil// 
 };
 
 /*
 Thing 8) Leaves
+As with the branches, I conceived the UDT as a single leaf.
 */
-struct Leaves
+struct Leaf
 {
-// 5 properties:
-//     1) length (float)
-//     2) width (float)
-//     3) colour (std::string)
-//     4) veins (int)
-//     5) hydration level (float)
-// 3 things it can do:
-//     1) grow
-//     2) rustle
-//     3) change colour
+    // length (float)
+    float lengthCm = 6.5f;
+    // width (float)
+    float widthCm = 6.5f;
+    // colour (std::string)
+    std::string colour = "green";
+    // veins (int)
+    int veins = 16;
+    // hydration level (float)
+    float hydrationLevel = 0.85f;
+    // 3 things it can do:
+    //     1) grow
+    //     2) rustle
+    //     3) change colour
 };
 
 /*
 Thing 9) Fruit
+As with the branches, I conceived the UDT as a single fruit.
 */
 struct Fruit
 {
-// 5 properties:
-//     1) seeds (int)
-//     2) endosperm level (float)
-//     3) hydration level (float)
-//     4) epicarp thickness (float)
-//     5) mesocarp thickness (float)
-// 3 things it can do:
-//     1) protect seeds
-//     2) disperse seeds
-//     3) feed seeds
+    // seeds (int)
+    int seeds = 2;
+    // endosperm level (float)
+    float endospermLevel = 0.75f;
+    // hydration level (float)
+    float hydrationLevel = 0.85f;
+    // epicarp thickness (float)
+    float epicarpThicknessCm = 0.05f;
+    // mesocarp thickness (float)
+    float mesocarpThicknessCm = 0.05f;
+    // 3 things it can do:
+    //     1) protect seeds
+    //     2) disperse seeds
+    //     3) feed seeds
 };
 
 /*
 Thing 10) Tree
+This is a very unusual tree.
 */
 struct Tree
 {
-// 5 properties:
-//     1) Root System
-//     2) Trunk
-//     3) Branches
-//     4) Leaves
-//     5) Fruit
-// 3 things it can do:
-//     1) Grow
-//     2) Photosynthesize
-//     3) Reproduce
+    // 5 properties:
+    // Root System
+    Roots roots;
+    // Trunk
+    Trunk trunk;
+    // Branch
+    Branch branch;
+    // Leaf
+    Leaf leaf;
+    // Fruit
+    Fruit fruit;
+    // 3 things it can do:
+    //     1) Grow
+    //     2) Photosynthesize
+    //     3) Reproduce
 };
     
 /*
