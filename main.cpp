@@ -83,51 +83,51 @@ Main Object: Car Interior
         Name 4 nouns you'll find on the [Sub Object]
             1) paddle shifters
             2) 'cruise control' controls
-            3) 
-            4) 
+            3) horn button
+            4) 'phone control' controls
         Name 2 actions that the [Sub Object] can do:
             1) adjust cruise control settings.
-            2)
+            2) engage the horn
         
     Sub Object: Instrument Cluster
         Name 4 nouns you'll find on the [Sub Object]
-            1)
-            2)
-            3)
-            4)
+            1) speedometer
+            2) odometer
+            3) tachometer
+            4) fuel gauge
         Name 3 actions that the [Sub Object] can do:
-            1)
-            2)
-            3)
+            1) accumulate distance the car has travelled
+            2) show how fast the car is moving
+            3) show remaining fuel
     
     Sub Object: Environment Controls
         Name 3 nouns you'll find on the [Sub Object]
-            1)
-            2)
-            3)
+            1) temperature dials
+            2) fan speed controls
+            3) off button
         Name 3 actions that the [Sub Object] can do:
-            1)
-            2)
-            3)
+            1) adjust target temperature
+            2) adjust fan speed
+            3) turn off climate control
 
     Sub Object: Infotainment System
         Name 3 nouns you'll find on the [Sub Object]
-            1)
-            2)
-            3)
+            1) Answer cell phone button
+            2) Radio button
+            3) volume control
         Name 3 actions that the [Sub Object] can do:
-            1)
-            2)
-            3)
+            1) Answer an incoming call
+            2) Turn on the radio
+            3) Adjust the volume
 
     Sub Object: Seat 
         Name 3 nouns you'll find on the [Sub Object]
-            1)
-            2)
-            3)
+            1) Slide lever
+            2) Seat-back adjustment lever
+            3) Window controls
         Name 2 actions that the [Sub Object] can do:
-            1)
-            2)
+            1) Adjust legroom
+            2) Adjust window position
 */
 
 /*
@@ -196,53 +196,6 @@ Part 1b - Step 2: Assignment
         c) pick properties that can eventually be represented with 
         'int float double bool char std::string'.
 
-Thing 1)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
-
-Thing 2)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
-
-Thing 3)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
-
-Thing 4)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
 */
 
 /*
@@ -337,17 +290,6 @@ Define an object that is made of 5 sub-objects.
     These 5 sub-objects will not be defined using Primitives, but instead will be their own UDTs 
     you'll define these 5 sub-objects in Part 1d.
 
-Thing 10)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
  */
 
  /*
@@ -434,65 +376,6 @@ example:
     You will need to provide 5 properties and 3 member functions of that Engine object in plain English.
     Remember to pick properties that can be represented with 'int float double bool char std::string'.
 
-Thing 5)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
-
-Thing 6)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
-
-Thing 7)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
-
-Thing 8)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
-
-Thing 9)
-5 properties:
-    1)
-    2)
-    3)
-    4)
-    5)
-3 things it can do:
-    1)
-    2)
-    3)
  */
 
 /*
@@ -545,13 +428,7 @@ MOVE THEM to the space below this block comment and put them in numerical order
     simply CUT and PASTE them in the space provided below:
 */
 
-
-
-
-
-
-
-
+ 
 /*
 =================
 Part 1d - Step 7: Commit
@@ -1010,14 +887,322 @@ Part 1e - Step 19: Request a review
 paste your code below
 */
 
+/*
+Thing 1) Treadmill
+*/
+struct Treadmill
+{
+    // current speed (float)
+    float currentSpeedKph = 0.0f;
+    // current inclination (float)
+    float currentInclinationDegrees = 0.0f;
+    // total distance simulated (float)
+    float totalDistanceSimulatedKm = 0.0f;
+    // session distance simulated (float)
+    float sessionDistanceSimulatedKm = 0.0f;
+    // maximum weight allowance (int)
+    int maximumWeightAllowanceKg = 300;
 
+    // display information for a value
+    struct ValueDisplay
+    {
+        // name of the current value being displayed
+        std::string name = "speed";
+        // name of the unit of the current value being displayed
+        std::string unit = "km/h";
+        // the value being displayed
+        float value = 0.0f;
+        // the colour the value and unit should be displayed in
+        std::string colour = "green";
+        // font to be used for the display of this value
+        std::string font = "Arial";
 
+        // updates the current value
+        void updateValue(float newValue);
 
+        // changes font
+        void changeFont(std::string font = "Arial", int fontSize = 18);
 
+        // changes colour
+        void changeColour(std::string color = "green");
+    };
 
+    ValueDisplay speedDisplay;
 
+    ValueDisplay inclineDisplay;
 
+    // rotate the belt    
+    void rotateBelt(float speeedKph);
 
+    // incline the surface
+    void incline(float inclinationDegrees);
+
+    // show a value
+    void display(ValueDisplay displayValue);
+};
+
+/*
+Thing 2) Helicopter
+*/
+struct Helicopter
+{
+    // number of main rotor blades (int)
+    int numMainRotorBlades = 4;
+    // number of seats (int)
+    int numSeats = 4;
+    // fuel capacity (float)
+    float fuelCapacityL = 550.0f;
+    //  maximum range (float)
+    float maximumRangeKm = 650.0f;
+    // colour (std::string)
+    std::string colour = "white";
+
+    // take off
+    void ascend(float speedKph);
+    
+    // travel
+    void travel(float speedKph, float bearingRads, float distanceKm);
+
+    // land
+    void descend(float speedKph);
+};
+
+/*
+Thing 3) Cat
+*/
+struct Cat
+{
+    // fur pattern (std::string)
+    std::string furPattern = "tabby";
+    // fur colour (std::string)
+    std::string furColour = "orange";
+    // eye color (std::string)
+    std::string eyeColor = "green";
+    // sex (char)
+    char sex = 'M';
+    // age (int)
+    int age = 3;
+
+    // hunt
+    bool hunt(std::string creature); // returns true if a creature was caught
+
+    // eat
+    void eat(float amountOfFoodKg);
+
+    // purr
+    void purr(float volumeDb);
+};
+
+/*
+Thing 4) Liquid
+*/
+struct Liquid
+{
+    // boiling point (double)
+    double boilingPointC = 100.0;
+    // freezing point (double)
+    double freezingPointC = 0.0;
+    // volume (double) -- changed from surface tension
+    double volumeL = 7;
+    // viscocity (double)
+    double viscocityCp = 0.89;
+    // temperature (double)
+    double temperatureC = 18.0;
+    
+    // freeze
+    void freeze();
+
+    // boil
+    void boil();
+    
+    // evaporate
+    double evaporate(float surfaceArea); // returns the volume evaporated
+};   
+
+/*
+Thing 5) Roots
+*/
+struct Roots
+{
+    // primary roots (int)
+    int primaryRoots = 1;
+    // secondary roots (int)
+    int secondaryRoots = 1500;
+    // total volume (float)
+    float totalVolumeL = 2600.0f;
+    // total length (float)
+    float totalLengthKm = 33.12f;
+    // density (float)
+    float densityKgPerL = 0.0615f;
+
+    // absorb water
+    void absorbWater(float volumeL);
+
+    // absorb nutrients
+    void absorbNutrients(float volumeL);
+    
+    // store energy
+    float storeEnergy(float newEnergy); // returns the current total energy stored
+};
+
+/*
+Thing 6) Trunk
+*/
+struct Trunk
+{
+    // bark thickness (float)
+    float barkThicknessCm = 1.5f;
+    // sapwood thickness (float)
+    float sapwoodThicknessCm = 3.25f;
+    // heartwood thicnkess (float)
+    float heartwoodThicknessCm = 18.614f;
+    // pith radius (float)
+    float pithRadiusCm = 0.21565f;
+    // total radius (float)
+    float totalRadiusCm = 23.57965f;
+    
+    // transport water
+    void transportWater(float volumeL);
+
+    // transport nutrients
+    void transportNutrients(float volumeL);
+    
+    // resist wind
+    float resistWind(float speedKph); // returns trunk integrity (%)
+};
+
+/*
+Thing 7) Branches
+In retrospect, I was thinking in terms of collections, (i.e. a tree has many branches) but I conceived the UDT as a single branch.
+*/
+struct Branch
+{
+    // length (float)
+    float lengthCm = 12.0f;
+    // child branches (int)
+    int childBranches = 5;
+    // buds (int)
+    int buds = 5;
+    // leaves (int)
+    int leaves = 50;
+    // age (int)
+    int age = 4;
+
+    // support leaves
+    void supportLeaves(int maxLeaves);
+
+    // transport water
+    void transportWater(float volumeL);
+
+    // transport nutrients
+    void transportNutrients(float volumeL);
+};
+
+/*
+Thing 8) Leaves
+As with the branches, I conceived the UDT as a single leaf.
+*/
+struct Leaf
+{
+    // length (float)
+    float lengthCm = 6.5f;
+    // width (float)
+    float widthCm = 6.5f;
+    // colour (std::string)
+    std::string colour = "green";
+    // veins (int)
+    int veins = 16;
+    // hydration level (float)
+    float hydrationLevel = 0.85f;
+    
+    // grow
+    void grow();
+
+    // photosynthesize
+    float photosynthesize(float sunlight); // returns glucose produced
+
+    // change colour
+    void changeColour(std::string newColour);
+};
+
+/*
+Thing 9) Fruit
+As with the branches, I conceived the UDT as a single fruit.
+*/
+struct Fruit
+{
+    // seeds (int)
+    int seeds = 2;
+    // endosperm level (float)
+    float endospermLevel = 0.75f;
+    // hydration level (float)
+    float hydrationLevel = 0.85f;
+    // epicarp thickness (float)
+    float epicarpThicknessCm = 0.05f;
+    // mesocarp thickness (float)
+    float mesocarpThicknessCm = 0.05f;
+
+    struct Seed 
+    {
+        // weight (float)
+        float weightGrams = 0.5f;
+        // seed coat integrity
+        float coatIntegrity = 1.0f;
+        // germination days (int)
+        int germinationDays = 14;
+        // stored energy (float)
+        float storedEnergy = 1.0f;
+        // days dormant
+        int daysDormant = 0;
+
+        // grow root
+        bool growRoot(bool germinated = false); // returns true if root grown
+
+        // grow a stem
+        bool growStem(bool germinated = false); // returns true if stem grown
+
+        // grow leaves
+        int growLeaves(bool germinated = false, int numLeaves = 2); // returns number of leaves grown
+    };
+
+    // protect seed (raise a seed's coatIntegrity)
+    void protectSeed(float increment);
+
+    // disperse a seed
+    void disperseSeed(Seed seed, float distanceKm);
+    
+    // feed seed
+    float feedSeed(Seed seed, float energy); // returns the amount of food remaining in the fruit in micrograms
+};
+
+/*
+Thing 10) Tree
+This is a very unusual tree.
+*/
+struct Tree
+{
+    // 5 properties:
+    // Root System
+    Roots roots;
+    // Trunk
+    Trunk trunk;
+    // Branch
+    Branch branch;
+    // Leaf
+    Leaf leaf;
+    // Fruit
+    Fruit fruit;
+
+    // Produce Leaves
+    float produceLeaves(int numBranches); // returns the number of leaves produced
+
+    // Procuce Flowers
+    int produceFlowers(int numLeaves); // returns the number of flowers produced
+
+    // Procuce Fruit
+    void produceFruit(int numFlowers); // returns the number of fruits produced
+};
+   
 int main()
 {
     std::cout << "good to go!" << std::endl;
