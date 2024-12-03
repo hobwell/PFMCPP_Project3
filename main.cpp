@@ -131,321 +131,162 @@ struct CarWash
  This usually means you have to use identical types for all variables used in an expression that is producing that conversion warning.
  */
 
-
-/*
-Thing 1) Treadmill
-*/
 struct Treadmill
 {
-    // current speed (float)
     float currentSpeedKph = 0.0f;
-    // current inclination (float)
     float currentInclinationDegrees = 0.0f;
-    // total distance simulated (float)
     float totalDistanceSimulatedKm = 0.0f;
-    // session distance simulated (float)
     float sessionDistanceSimulatedKm = 0.0f;
-    // maximum weight allowance (int)
     int maximumWeightAllowanceKg = 300;
 
-    // display information for a value
     struct ValueDisplay
     {
-        // name of the current value being displayed
         std::string name = "speed";
-        // name of the unit of the current value being displayed
         std::string unit = "km/h";
-        // the value being displayed
         float value = 0.0f;
-        // the colour the value and unit should be displayed in
         std::string colour = "green";
-        // font to be used for the display of this value
         std::string font = "Arial";
 
-        // updates the current value
         void updateValue(float newValue);
-
-        // changes font
         void changeFont(std::string font = "Arial", int fontSize = 18);
-
-        // changes colour
         void changeColour(std::string color = "green");
     };
 
     ValueDisplay speedDisplay;
-
     ValueDisplay inclineDisplay;
-
-    // rotate the belt    
     void rotateBelt(float speeedKph);
-
-    // incline the surface
     void incline(float inclinationDegrees);
-
-    // show a value
     void display(ValueDisplay displayValue);
 };
 
-/*
-Thing 2) Helicopter
-*/
 struct Helicopter
 {
-    // number of main rotor blades (int)
     int numMainRotorBlades = 4;
-    // number of seats (int)
     int numSeats = 4;
-    // fuel capacity (float)
     float fuelCapacityL = 550.0f;
-    //  maximum range (float)
     float maximumRangeKm = 650.0f;
-    // colour (std::string)
     std::string colour = "white";
 
-    // take off
-    void ascend(float speedKph);
-    
-    // travel
+    void ascend(float speedKph);    
     void travel(float speedKph, float bearingRads, float distanceKm);
-
-    // land
     void descend(float speedKph);
 };
 
-/*
-Thing 3) Cat
-*/
 struct Cat
 {
-    // fur pattern (std::string)
     std::string furPattern = "tabby";
-    // fur colour (std::string)
     std::string furColour = "orange";
-    // eye color (std::string)
     std::string eyeColor = "green";
-    // sex (char)
     char sex = 'M';
-    // age (int)
     int age = 3;
 
-    // hunt
-    bool hunt(std::string creature); // returns true if a creature was caught
-
-    // eat
+    bool hunt(std::string creature);
     void eat(float amountOfFoodKg);
-
-    // purr
     void purr(float volumeDb);
 };
 
-/*
-Thing 4) Liquid
-*/
 struct Liquid
 {
-    // boiling point (double)
     double boilingPointC = 100.0;
-    // freezing point (double)
     double freezingPointC = 0.0;
-    // volume (double) -- changed from surface tension
     double volumeL = 7;
-    // viscocity (double)
     double viscocityCp = 0.89;
-    // temperature (double)
     double temperatureC = 18.0;
     
-    // freeze
     void freeze();
-
-    // boil
     void boil();
-    
-    // evaporate
-    double evaporate(float surfaceArea); // returns the volume evaporated
+    double evaporate(float surfaceArea);
 };   
 
-/*
-Thing 5) Roots
-*/
 struct Roots
 {
-    // primary roots (int)
     int primaryRoots = 1;
-    // secondary roots (int)
     int secondaryRoots = 1500;
-    // total volume (float)
     float totalVolumeL = 2600.0f;
-    // total length (float)
     float totalLengthKm = 33.12f;
-    // density (float)
     float densityKgPerL = 0.0615f;
 
-    // absorb water
     void absorbWater(float volumeL);
-
-    // absorb nutrients
     void absorbNutrients(float volumeL);
-    
-    // store energy
-    float storeEnergy(float newEnergy); // returns the current total energy stored
+    float storeEnergy(float newEnergy);
 };
 
-/*
-Thing 6) Trunk
-*/
 struct Trunk
 {
-    // bark thickness (float)
     float barkThicknessCm = 1.5f;
-    // sapwood thickness (float)
     float sapwoodThicknessCm = 3.25f;
-    // heartwood thicnkess (float)
     float heartwoodThicknessCm = 18.614f;
-    // pith radius (float)
     float pithRadiusCm = 0.21565f;
-    // total radius (float)
     float totalRadiusCm = 23.57965f;
     
-    // transport water
     void transportWater(float volumeL);
-
-    // transport nutrients
     void transportNutrients(float volumeL);
-    
-    // resist wind
-    float resistWind(float speedKph); // returns trunk integrity (%)
+    float resistWind(float speedKph);
 };
 
-/*
-Thing 7) Branches
-In retrospect, I was thinking in terms of collections, (i.e. a tree has many branches) but I conceived the UDT as a single branch.
-*/
 struct Branch
 {
-    // length (float)
     float lengthCm = 12.0f;
-    // child branches (int)
     int childBranches = 5;
-    // buds (int)
     int buds = 5;
-    // leaves (int)
     int leaves = 50;
-    // age (int)
     int age = 4;
 
-    // support leaves
     void supportLeaves(int maxLeaves);
-
-    // transport water
     void transportWater(float volumeL);
-
-    // transport nutrients
     void transportNutrients(float volumeL);
 };
 
-/*
-Thing 8) Leaves
-As with the branches, I conceived the UDT as a single leaf.
-*/
 struct Leaf
 {
-    // length (float)
     float lengthCm = 6.5f;
-    // width (float)
     float widthCm = 6.5f;
-    // colour (std::string)
     std::string colour = "green";
-    // veins (int)
     int veins = 16;
-    // hydration level (float)
     float hydrationLevel = 0.85f;
     
-    // grow
     void grow();
-
-    // photosynthesize
-    float photosynthesize(float sunlight); // returns glucose produced
-
-    // change colour
+    float photosynthesize(float sunlight);
     void changeColour(std::string newColour);
 };
 
-/*
-Thing 9) Fruit
-As with the branches, I conceived the UDT as a single fruit.
-*/
 struct Fruit
 {
-    // seeds (int)
     int seeds = 2;
-    // endosperm level (float)
     float endospermLevel = 0.75f;
-    // hydration level (float)
     float hydrationLevel = 0.85f;
-    // epicarp thickness (float)
     float epicarpThicknessCm = 0.05f;
-    // mesocarp thickness (float)
     float mesocarpThicknessCm = 0.05f;
 
     struct Seed 
     {
-        // weight (float)
         float weightGrams = 0.5f;
-        // seed coat integrity
         float coatIntegrity = 1.0f;
-        // germination days (int)
         int germinationDays = 14;
-        // stored energy (float)
         float storedEnergy = 1.0f;
-        // days dormant
         int daysDormant = 0;
 
-        // grow root
-        bool growRoot(bool germinated = false); // returns true if root grown
-
-        // grow a stem
-        bool growStem(bool germinated = false); // returns true if stem grown
-
-        // grow leaves
-        int growLeaves(bool germinated = false, int numLeaves = 2); // returns number of leaves grown
+        bool growRoot(bool germinated = false);
+        bool growStem(bool germinated = false);
+        int growLeaves(bool germinated = false, int numLeaves = 2);
     };
 
-    // protect seed (raise a seed's coatIntegrity)
     void protectSeed(float increment);
-
-    // disperse a seed
     void disperseSeed(Seed seed, float distanceKm);
-    
-    // feed seed
-    float feedSeed(Seed seed, float energy); // returns the amount of food remaining in the fruit in micrograms
+    float feedSeed(Seed seed, float energy);
 };
 
-/*
-Thing 10) Tree
-This is a very unusual tree.
-*/
 struct Tree
 {
-    // 5 properties:
-    // Root System
     Roots roots;
-    // Trunk
     Trunk trunk;
-    // Branch
     Branch branch;
-    // Leaf
     Leaf leaf;
-    // Fruit
     Fruit fruit;
 
-    // Produce Leaves
-    float produceLeaves(int numBranches); // returns the number of leaves produced
-
-    // Procuce Flowers
-    int produceFlowers(int numLeaves); // returns the number of flowers produced
-
-    // Procuce Fruit
-    void produceFruit(int numFlowers); // returns the number of fruits produced
+    float produceLeaves(int numBranches);
+    int produceFlowers(int numLeaves);
+    void produceFruit(int numFlowers);
 };
    
 int main()
