@@ -142,10 +142,13 @@ struct Person
 };
 
 void Person::run(int howFast, bool startWithLeftFoot){
-    if(startWithLeftFoot == true){
+    if(startWithLeftFoot == true)
+    {
         leftFoot.stepForward();
         rightFoot.stepForward();
-    } else {
+    }
+    else
+    {
         rightFoot.stepForward();
         leftFoot.stepForward();
     }
