@@ -141,7 +141,8 @@ struct Person
     void run(int howFast, bool startWithLeftFoot);
 };
 
-void Person::run(int howFast, bool startWithLeftFoot){
+void Person::run(int howFast, bool startWithLeftFoot)
+{
     if(startWithLeftFoot == true)
     {
         leftFoot.stepForward();
