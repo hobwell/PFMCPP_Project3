@@ -153,6 +153,7 @@ void Person::run(int howFast, bool startWithLeftFoot)
         rightFoot.stepForward();
         leftFoot.stepForward();
     }
+    
     distanceTraveled += leftFoot.stepSize(howFast) + rightFoot.stepSize(howFast);
 }
 
@@ -264,8 +265,10 @@ bool Cat::hunt(std::string creature)
 {
     if(creature == "mouse")
         return true;
+    
     if (creature == "bird")
         return true;
+    
     return false;
 }
 
@@ -279,12 +282,18 @@ void Cat::eat(float amountOfFoodKg)
 
 void Cat::purr(float volumeDb)
 {
-    if(volumeDb <= 0.0f) 
+    if(volumeDb <= 0.0f)
+    {
         std::cout << std::endl;
+    }
     else if (volumeDb <= 50.0f)
-        std::cout << "purrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" << std::endl;    
-    else 
+    {
+        std::cout << "purrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" << std::endl;
+    }
+    else
+    {
         std::cout << "PURRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR" << std::endl;     
+    }
 }
 
 struct Liquid
@@ -375,10 +384,12 @@ float Trunk::resistWind(float speedKph)
     float integrity = totalRadiusCm / 25.0f;
     float factor = 1 - integrity;
     float windResistance = integrity * 0.8f;
+    
     while (speedKph > 1.0f)
     {
         speedKph /= 2.0f;
     }
+    
     if (windResistance < speedKph)
     {
         integrity -= factor;
@@ -390,7 +401,11 @@ float Trunk::resistWind(float speedKph)
         totalRadiusCm = pithRadiusCm + barkThicknessCm + sapwoodThicknessCm + heartwoodThicknessCm;
     } 
     else
-        std::cout << "Wind resisted, trunk integrity unchanged." << std::endl;
+    {
+        std::cout << "Wind resisted, trunk integrity unchanged." << 
+    }
+    
+    std::endl;
     return integrity;
 }
 
@@ -453,6 +468,7 @@ float Leaf::photosynthesize(float sunlight)
         hydrationLevel -= 0.02f;
         return energy;
     }
+    
     std::cout << "No sunlight detected." << std::endl;
     return 0.0f;
 }
@@ -498,6 +514,7 @@ void Fruit::disperseSeed(Seed seed, float distanceKm)
 {
     seed.daysDormant = 0;
     seed.germinationDays = 0;
+    
     if (seeds > 0)
         seeds -= 1;   
     seed.coatIntegrity -= distanceKm / 100.0f;
