@@ -402,10 +402,8 @@ float Trunk::resistWind(float speedKph)
     } 
     else
     {
-        std::cout << "Wind resisted, trunk integrity unchanged." << 
+        std::cout << "Wind resisted, trunk integrity unchanged." << std::endl;
     }
-    
-    std::endl;
     return integrity;
 }
 
@@ -516,7 +514,7 @@ void Fruit::disperseSeed(Seed seed, float distanceKm)
     seed.germinationDays = 0;
     
     if (seeds > 0)
-        seeds -= 1;   
+        seeds -= 1;
     seed.coatIntegrity -= distanceKm / 100.0f;
 }
 
