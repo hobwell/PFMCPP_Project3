@@ -260,44 +260,31 @@ struct Cat
     void purr(float volumeDb);
 };
 
-bool Cat::hunt(std::string creature){
+bool Cat::hunt(std::string creature)
+{
     if(creature == "mouse")
-    {
         return true;
-    }
     if (creature == "bird")
-    {
         return true;
-    }
     return false;
 }
 
 void Cat::eat(float amountOfFoodKg)
 {
     if(amountOfFoodKg > 0.0f)
-    {
         std::cout << "nom nom nom" << std::endl;
-    }
     else 
-    {
         std::cout << "meow" << std::endl;    
-    }
 }
 
 void Cat::purr(float volumeDb)
 {
     if(volumeDb <= 0.0f) 
-    {
         std::cout << std::endl;
-    }
     else if (volumeDb <= 50.0f)
-    {
         std::cout << "purrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr" << std::endl;    
-    }
     else 
-    {
-        std::cout << "PURRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR" << std::endl;    
-    }    
+        std::cout << "PURRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR" << std::endl;     
 }
 
 struct Liquid
@@ -402,10 +389,8 @@ float Trunk::resistWind(float speedKph)
         heartwoodThicknessCm = heartwoodThicknessCm * integrity;
         totalRadiusCm = pithRadiusCm + barkThicknessCm + sapwoodThicknessCm + heartwoodThicknessCm;
     } 
-    else 
-    {
+    else
         std::cout << "Wind resisted, trunk integrity unchanged." << std::endl;
-    }
     return integrity;
 }
 
@@ -425,12 +410,9 @@ struct Branch
 void Branch::supportLeaves(int maxLeaves)
 {
     if (maxLeaves > leaves)
-    {
         leaves = maxLeaves;
-    } else 
-    {
+    else 
         leaves += 1;
-    }
 }
 
 void Branch::transportWater(float volumeL)
@@ -517,9 +499,7 @@ void Fruit::disperseSeed(Seed seed, float distanceKm)
     seed.daysDormant = 0;
     seed.germinationDays = 0;
     if (seeds > 0)
-    {
         seeds -= 1;   
-    }
     seed.coatIntegrity -= distanceKm / 100.0f;
 }
 
