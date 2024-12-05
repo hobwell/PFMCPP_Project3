@@ -522,7 +522,7 @@ void Fruit::disperseSeed (Seed seed, float distanceKm)
     seed.coatIntegrity -= distanceKm / 100.0f;
 }
 
-float Fruit::feedSeed(Seed seed, float energy)
+float Fruit::feedSeed (Seed seed, float energy)
 {
     seed.storedEnergy += energy;
     
