@@ -84,6 +84,7 @@ Treadmill::Treadmill (float weightAllowance)
 
 void Treadmill::rotateBelt (float speedKph)
 {
+    std::cout << "Current Session distance: " << sessionDistanceSimulatedKm << " km!" << std::endl;
     currentSpeedKph = speedKph;
     speedDisplay.updateValue (currentSpeedKph);
     std::cout << "Away we go (at " << currentSpeedKph << " km/h)!" << std::endl;
@@ -112,12 +113,13 @@ Treadmill::ValueDisplay::ValueDisplay (float val, std::string valName, std::stri
 
 void Treadmill::ValueDisplay::updateValue (float newValue)
 {
-    value = newValue;
-    std::cout << "New " << name << ": " << value << " " << unit << std::endl;
+    std::cout << "Changing " << name << " from " << value << " to " << newValue << " " << unit << std::endl;
+    value = newValue;    
 }
 
 void Treadmill::ValueDisplay::changeFont (std::string newFont, int newFontSize)
 {
+    std::cout << "Changing font from " << font << " " << fontSize << "pt to " << newFont << " " << newFontSize << "pt" << std::endl;
     font = newFont;
     fontSize = newFontSize;
 }
@@ -170,6 +172,7 @@ void Helicopter::descend (float speedKph, float timeInSeconds)
 
 void Helicopter::travel (float speedKph, float bearingRads, float distanceKm)
 {
+    std::cout << "Travelling from: " << longitude << " long, " << latitude << " lat" << std::endl;
     latitude += (speedKph / 3600) * distanceKm * bearingRads;
     longitude += (speedKph / 3600) * distanceKm * bearingRads;
 }
@@ -181,7 +184,7 @@ struct Cat
 
     std::string furPattern = "tabby";
     std::string furColour = "orange";
-    std::string eyeColor = "green";
+    std::string eyeColour = "green";
     char sex = 'F';
     int age = 3;
 
@@ -199,7 +202,7 @@ Cat::Cat (std::string pattern, std::string colour)
 
 bool Cat::hunt (std::string creature)
 {
-    std::cout << "The cat is hunting a " << creature << "!" << std::endl;
+    std::cout << "The " << eyeColour << "-eyed cat is hunting a " << creature << "!" << std::endl;
 
     if (creature == "mouse")
     {
@@ -269,7 +272,7 @@ Liquid::Liquid (double boilingPoint, double freezingPoint, double viscocity)
 void Liquid::freeze()
 {
     temperatureC = freezingPointC;
-    std::cout << "Brrrrrrr" << std::endl;
+    std::cout << volumeL << "L of liquid became solid." << std::endl;
 }
 
 void Liquid::boil()
@@ -289,21 +292,29 @@ struct Roots
 {
     Roots();
 
-    int primaryRoots = 1;
-    int secondaryRoots = 1500;
-    float totalVolumeL = 2600.0f;
-    float totalLengthKm = 33.12f;
-    float densityKgPerL = 0.0615f;
-    float hydration = 0.5f;
-    float energy = 0.5f;
-    float nutrients = 0.5f;
+    int primaryRoots;
+    int secondaryRoots;
+    float totalVolumeL;
+    float totalLengthKm;
+    float densityKgPerL;
+    float hydration;
+    float energy;
+    float nutrients;
 
     void absorbWater (float volumeL);
     void absorbNutrients (float volumeL);
     float storeEnergy (float newEnergy);
 };
 
-Roots::Roots()
+Roots::Roots() :
+    primaryRoots (1),
+    secondaryRoots (1500),
+    totalVolumeL (2600.0f),
+    totalLengthKm (33.12f),
+    densityKgPerL (0.0615f),
+    hydration (0.5f),
+    energy (0.5f),
+    nutrients (0.5f)
 {
     std::cout << "Roots have been constructed!" << std::endl;
 }
@@ -311,6 +322,7 @@ Roots::Roots()
 void Roots::absorbWater (float volumeL)
 {
     hydration = hydration + (volumeL + densityKgPerL) / densityKgPerL;
+    std::cout << totalVolumeL << "L of roots have been hydrated" << std::endl;
 }
 
 void Roots::absorbNutrients (float volumeL)
@@ -365,17 +377,18 @@ void Trunk::transportNutrients (float volumeL)
 float Trunk::resistWind (float speedKph)
 {
     float integrity = totalRadiusCm / 25.0f;
-    float factor = 1 - integrity;
-    float windResistance = integrity * 0.8f;
+    std::cout << totalRadiusCm * 2 << "cm trunk integrity: " << integrity << std::endl;
 
     while (speedKph > 1.0f)
     {
         speedKph /= 2.0f;
     }
+        
+    float windResistance = integrity * 0.8f;
 
     if (windResistance < speedKph)
     {
-        integrity -= factor;
+        integrity -= (1 - integrity);
         std::cout << "Wind force too high, trunk integrity reduced to " << integrity << std::endl;
         pithRadiusCm = pithRadiusCm * integrity;
         barkThicknessCm = barkThicknessCm * integrity;
@@ -422,16 +435,18 @@ void Branch::supportLeaves (int maxLeaves)
         leaves = maxLeaves;
     else
         leaves += 1;
+
+    std::cout << age << " year old branch supports " << leaves << " leaves." << std::endl;
 }
 
 void Branch::transportWater (float volumeL)
 {
-    std::cout << "Branch Transported " << volumeL << "L of water to leaves." << std::endl;
+    std::cout << "Branch Transported " << volumeL << "L of water to " << leaves << " leaves." << std::endl;
 }
 
 void Branch::transportNutrients (float volumeL)
 {
-    std::cout << "Branch Transported " << volumeL << "L of nutrients to leaves." << std::endl;
+    std::cout << "Branch Transported " << volumeL << "L of nutrients to " << leaves << " leaves." << std::endl;
 }
 
 
@@ -439,18 +454,23 @@ struct Leaf
 {
     Leaf();
 
-    float lengthCm = 0.5f;
-    float widthCm = 0.5f;
-    std::string colour = "green";
-    int veins = 5;
-    float hydrationLevel = 0.85f;
+    float lengthCm;
+    float widthCm;
+    std::string colour;
+    int veins;
+    float hydrationLevel;
 
     void grow();
     float photosynthesize (float sunlight);
     void changeColour (std::string newColour);
 };
 
-Leaf::Leaf()
+Leaf::Leaf() :
+    lengthCm (0.5f),
+    widthCm (0.5f),
+    colour ("green"),
+    veins (5),
+    hydrationLevel (0.85f)
 {
     std::cout << "A Leaf has been constructed!" << std::endl;
 }
@@ -480,8 +500,8 @@ float Leaf::photosynthesize (float sunlight)
 
 void Leaf::changeColour (std::string newColour)
 {
-    colour = newColour;
-    std::cout << "Leaf is now " << colour << "." << std::endl;
+    std::cout << "Leaf changing from " << colour << " to " << newColour << std::endl;
+    colour = newColour;    
 }
 
 
@@ -524,6 +544,7 @@ Fruit::Fruit()
 
 void Fruit::protectSeed (float increment)
 {
+    std::cout << "Hydration level: " << hydrationLevel << std::endl;
     epicarpThicknessCm += increment;
     mesocarpThicknessCm += increment / 2.0f;
     seed.weightGrams += increment / 10.0f;
@@ -555,6 +576,7 @@ bool Fruit::Seed::growRoot (bool germinated)
 {
     if (germinated)
     {
+        std::cout << "Coat Integrity: " << coatIntegrity << std::endl;
         if (coatIntegrity < 0.75f)
         {
             storedEnergy -= 0.04f;
@@ -574,6 +596,7 @@ bool Fruit::Seed::growStem (bool germinated)
 {
     if (germinated)
     {
+         std::cout << "Coat Integrity: " << coatIntegrity << std::endl;
         if (coatIntegrity < 0.5f)
         {
             storedEnergy -= 0.07f;
@@ -593,6 +616,7 @@ int Fruit::Seed::growLeaves (bool germinated, int numLeaves)
 {
     if (germinated)
     {
+         std::cout << "Coat Integrity: " << coatIntegrity << std::endl;
         if (coatIntegrity < 0.25f)
         {
             storedEnergy -= 0.04f;
@@ -623,8 +647,7 @@ struct Tree
     void produceFruit (int numFlowers);
 };
 
-Tree::Tree(float barkCm, float sapwoodCm, float heartwoodCm, float pithCm, float branchLength)
-    :
+Tree::Tree (float barkCm, float sapwoodCm, float heartwoodCm, float pithCm, float branchLength) :
     trunk (barkCm, sapwoodCm, heartwoodCm, pithCm),
     branch (branchLength)
 {
@@ -633,6 +656,7 @@ Tree::Tree(float barkCm, float sapwoodCm, float heartwoodCm, float pithCm, float
 
 int Tree::produceLeaves (int numBranches)
 {
+    std::cout << "Tree has a branch length of " << branch.lengthCm << " cm with " << branch.leaves << " leaves." << std::endl;
     return numBranches * 15;
 }
 
@@ -709,7 +733,7 @@ int main()
     Cat tuxedoCat{ "tuxedo", "black" };
     std::cout << "Cat: furPattern: " << tuxedoCat.furPattern << std::endl;
     std::cout << "Cat: furColour: " << tuxedoCat.furColour << std::endl;
-    std::cout << "Cat: eyeColor: " << tuxedoCat.eyeColor << std::endl;
+    std::cout << "Cat: eyeColour: " << tuxedoCat.eyeColour << std::endl;
     std::cout << "Cat: age: " << tuxedoCat.age << std::endl;
     std::cout << "Cat: sex: " << tuxedoCat.sex << std::endl;
 
