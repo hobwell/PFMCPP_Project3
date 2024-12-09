@@ -97,6 +97,8 @@ struct Treadmill
         void updateValue (float newValue);
         void changeFont (std::string newFont = "Arial", int newFontSize = 18);
         void changeColour (std::string newColor = "green");
+        int growFontSize (int numSteps = 1);
+        int shrinkFontSize (int numSteps = 1);
     };
 
     ValueDisplay speedDisplay{ 0.0f, "speed", "km/h" };
@@ -105,6 +107,7 @@ struct Treadmill
     void rotateBelt (float speeedKph);
     void incline (float inclinationDegrees);
     void display (ValueDisplay displayValue);
+    float run(int numSteps, float strideLength = 0.00065f);
 };
 
 Treadmill::Treadmill (float weightAllowance)
@@ -134,6 +137,20 @@ void Treadmill::display (ValueDisplay displayValue)
     std::cout << displayValue.name << ": " << displayValue.value << " " << displayValue.unit << std::endl;
 }
 
+float Treadmill::run(int numSteps, float strideLength)
+{
+    for (int i = 0; i < numSteps; ++i)
+    {
+        if (i % 2 == 0)
+            std::cout << "Huff"<< std::endl;
+        else
+            std::cout << "Puff" << std::endl;
+        sessionDistanceSimulatedKm += strideLength;
+    }
+    
+    return sessionDistanceSimulatedKm;
+}
+
 
 Treadmill::ValueDisplay::ValueDisplay (float val, std::string valName, std::string valUnit)
 {
@@ -161,6 +178,52 @@ void Treadmill::ValueDisplay::changeColour (std::string newColor)
     colour = newColor;
 }
 
+int Treadmill::ValueDisplay::growFontSize (int numSteps)
+{   
+    if (numSteps > 0)
+    {
+        std::cout << "Growing font size ";
+        for (int i = 0; i < numSteps; ++i)
+        {
+            fontSize += 1;
+            std::cout << ".";
+        }
+        std::cout << std::endl;
+    }
+    else 
+    {
+        std::cout << "numSteps must be greater than 0 for growFontSize to work." << std::endl;
+    }
+        
+    return fontSize;
+}
+
+int Treadmill::ValueDisplay::shrinkFontSize (int numSteps)
+{   
+    if (numSteps > 0)
+    {
+        std::cout << "Shrinking font size ";
+        int i = 0;
+        while (i < numSteps && fontSize > 0)
+        {
+            fontSize -= 1;
+            std::cout << ".";
+            i += 1;
+            if (fontSize < 1)
+            {
+                std::cout << std::endl << "Font size can't shrink any further!";
+            }
+        }
+        std::cout << std::endl;
+    }
+    else 
+    {
+        std::cout << "numSteps must be greater than 0 for shrinkFontSize to work." << std::endl;
+    }
+        
+    return fontSize;
+}
+
 
 struct Helicopter
 {
@@ -173,11 +236,13 @@ struct Helicopter
     int numSeats = 4;
     float fuelCapacityL = 550.0f;
     float maximumRangeKm = 650.0f;
+    float rotorVelocity = 0.0f;
     std::string colour = "white";
 
     void ascend (float speedKph, float timeInSeconds);
     void travel (float speedKph, float bearingRads, float distanceKm);
     void descend (float speedKph, float timeInSeconds);
+    float spinUpRotors(float timeInSeconds);
 };
 
 Helicopter::Helicopter (int seats, int rotors, float fuelCapacity, float maxRange)
@@ -209,6 +274,22 @@ void Helicopter::travel (float speedKph, float bearingRads, float distanceKm)
     longitude += (speedKph / 3600) * distanceKm * bearingRads;
 }
 
+float Helicopter::spinUpRotors(float timeInSeconds = 180.0f)
+{
+    float rotationalAcceleration = 0.85f;
+    std::cout << "Spinning up rotors: Whee";
+    float timeElapsed = 0.0f;
+    while (timeInSeconds > timeElapsed)
+    {
+        rotorVelocity += (rotationalAcceleration * timeElapsed);
+        timeElapsed += 1.0f;
+        std::cout << "e";
+    }
+    std::cout << "!" << std::endl;
+
+    return rotorVelocity / 60.0f; // convert hz to rpm
+}
+
 
 struct Cat
 {
@@ -223,6 +304,7 @@ struct Cat
     bool hunt (std::string creature);
     void eat (float amountOfFoodKg);
     void purr (float volumeDb);
+    int unrollToiletPaper(int numSwipes = 4, int squaresRemaining = 400);
 };
 
 Cat::Cat (std::string pattern, std::string colour)
@@ -277,6 +359,25 @@ void Cat::purr (float volumeDb)
     }
 }
 
+int Cat::unrollToiletPaper(int numSwipes, int squaresRemaining)
+{
+    if (numSwipes > 0)
+    {
+        while (numSwipes > 0 && squaresRemaining > 0)
+        {
+            std::cout << "*bat* ";
+            numSwipes -= 1;
+            squaresRemaining -= 10;
+        }
+        std::cout << std::endl;
+    }
+    else
+    {
+        std::cout << "Luckily, cats haven't figured out how to take negatve swipes yet." << std::endl;
+    }
+    return squaresRemaining;
+}
+
 
 struct Liquid
 {
@@ -291,6 +392,7 @@ struct Liquid
     void freeze();
     void boil();
     double evaporate (double surfaceArea);
+    double condensate (double humidity, double surfaceTemperatureC);
 };
 
 Liquid::Liquid (double boilingPoint, double freezingPoint, double viscocity)
@@ -316,7 +418,37 @@ void Liquid::boil()
 double Liquid::evaporate (double surfaceArea)
 {
     std::cout << "**POOF**" << std::endl;
-    return surfaceArea * viscocityCp * (temperatureC - boilingPointC);
+    volumeL = surfaceArea * viscocityCp * (temperatureC - boilingPointC);
+    return volumeL;
+}
+
+double Liquid::condensate (double humidity, double surfaceTemperatureC)
+{
+    if (surfaceTemperatureC < temperatureC)
+    {
+        if (humidity > 0.0)
+        {
+            while (humidity > 0.0 && surfaceTemperatureC < temperatureC)
+            {
+                humidity /= 1.01;
+                std::cout << "*drip*" << std::endl;
+                volumeL += 0.01;
+                surfaceTemperatureC += 0.9;
+                temperatureC -= 0.9;
+            }
+            std::cout << "Equllibrium reached." << std::endl;
+        }
+        else
+        {
+            std::cout << "Humidity must be greater than 0.0f for condensate to work." << std::endl;
+        }
+    }
+    else
+    {
+        std::cout << "Surface temperature must be less than the current temperature for condensate to work." << std::endl;
+    }
+    
+    return humidity;
 }
 
 
@@ -336,6 +468,7 @@ struct Roots
     void absorbWater (float volumeL);
     void absorbNutrients (float volumeL);
     float storeEnergy (float newEnergy);
+    void grow ();
 };
 
 Roots::Roots() :
@@ -370,6 +503,20 @@ float Roots::storeEnergy (float newEnergy)
     return energy;
 }
 
+void Roots::grow ()
+{
+    while (energy > 0.3f && nutrients > 0.4f)
+    {
+        secondaryRoots += 1;
+        totalVolumeL += (2600.0f / 1500.0f);
+        totalLengthKm  += (33.12f / 1500.0f);
+        densityKgPerL -= 0.0001f;
+        energy -= 0.02f;
+        nutrients -= 0.02f;
+        std::cout << "Added a root." << std::endl;
+    }
+    std::cout << "Roots have stopped growing due a lack of energy or nutrients." << std::endl;
+}
 
 struct Trunk
 {
@@ -384,6 +531,7 @@ struct Trunk
     void transportWater (float volumeL);
     void transportNutrients (float volumeL);
     float resistWind (float speedKph);
+    int receiveCarving (std::string message);
 };
 
 Trunk::Trunk (float barkCm, float sapwoodCm, float heartwoodCm, float pithCm)
@@ -436,6 +584,17 @@ float Trunk::resistWind (float speedKph)
     return integrity;
 }
 
+int Trunk::receiveCarving (std::string message)
+{
+    int painReceived = 0;
+    for(size_t i = 0; i < message.length(); ++i)
+    {        
+        std::cout << message[i] << std::endl;
+        painReceived += i;
+    }
+    return painReceived;
+}
+
 
 struct Branch
 {
@@ -450,6 +609,7 @@ struct Branch
     void supportLeaves (int maxLeaves);
     void transportWater (float volumeL);
     void transportNutrients (float volumeL);
+    int makeLeaves();
 };
 
 Branch::Branch (float length)
@@ -481,6 +641,19 @@ void Branch::transportNutrients (float volumeL)
     std::cout << "Branch Transported " << volumeL << "L of nutrients to " << leaves << " leaves." << std::endl;
 }
 
+int Branch::makeLeaves()
+{
+    int newLeaves = 0;
+    for (int i = 0; i < childBranches; ++i)
+    {
+        newLeaves += 2;
+    }
+    
+    leaves += newLeaves;
+    
+    return newLeaves;
+}
+
 
 struct Leaf
 {
@@ -491,10 +664,12 @@ struct Leaf
     std::string colour;
     int veins;
     float hydrationLevel;
+    float distanceFromGround;
 
     void grow();
     float photosynthesize (float sunlight);
     void changeColour (std::string newColour);
+    float fall();    
 };
 
 Leaf::Leaf() :
@@ -502,7 +677,8 @@ Leaf::Leaf() :
     widthCm (0.5f),
     colour ("green"),
     veins (5),
-    hydrationLevel (0.85f)
+    hydrationLevel (0.85f),
+    distanceFromGround (4.0f)
 {
     std::cout << "A Leaf has been constructed!" << std::endl;
 }
@@ -536,6 +712,37 @@ void Leaf::changeColour (std::string newColour)
     colour = newColour;    
 }
 
+float Leaf::fall()
+{
+    float time = 0.0f;
+    if (distanceFromGround > 0.0f)
+    {
+        changeColour("brown");
+        float gravity = 9.81f;
+        float area = (lengthCm / 100.0f) * (widthCm / 100.0f);
+        float weight = (lengthCm * widthCm * 0.0005f) / 1000.0f;
+        while (distanceFromGround > 0.0f) 
+        {
+            float distanceTravelled = gravity * (weight / (area * 0.15f));
+            distanceFromGround -= distanceTravelled;
+            std::cout << "down..." << std::endl;
+            if (distanceFromGround < 0.0f)
+            {
+                distanceFromGround = 0.0f;
+                std::cout << "bounce..." << std::endl;
+                time += 0.5f;
+            }
+            time += 1.0f;
+        }
+        std::cout << "Leaf fell." << std::endl;
+    }
+    else
+    {
+        std::cout << "Leaf has already fallen." << std::endl;
+    }
+    return time;
+}
+
 
 struct Fruit
 {
@@ -548,11 +755,11 @@ struct Fruit
 
     struct Seed
     {
-        Seed();
+        Seed(int germinationDays);
 
         float weightGrams = 0.05f;
         float coatIntegrity = 1.0f;
-        int germinationDays = 0;
+        int daysToGerminate = 15;
         float storedEnergy = 0.0f;
         int daysDormant = 0;
         int totalLeaves = 0;
@@ -560,13 +767,15 @@ struct Fruit
         bool growRoot (bool germinated = false);
         bool growStem (bool germinated = false);
         int growLeaves (bool germinated = false, int numLeaves = 2);
+        bool germinate (int days);
     };
 
-    Seed seed;
+    Seed seed{15};
 
     void protectSeed (float increment);
     Seed disperseSeed (float distanceKm);
     float feedSeed (float energy);
+    float decay (int days);
 };
 
 Fruit::Fruit()
@@ -585,7 +794,6 @@ void Fruit::protectSeed (float increment)
 Fruit::Seed Fruit::disperseSeed (float distanceKm)
 {
     seed.daysDormant = 0;
-    seed.germinationDays = 0;
     seed.coatIntegrity -= distanceKm / 100.0f;
 
     return seed;
@@ -598,9 +806,30 @@ float Fruit::feedSeed (float energy)
     return seed.storedEnergy;
 }
 
-
-Fruit::Seed::Seed()
+float Fruit::decay (int days)
 {
+    float integrity = (endospermLevel + hydrationLevel + epicarpThicknessCm + mesocarpThicknessCm) / 4.0f;
+    for (int i = 0; i < days; ++i)
+    {
+        endospermLevel *= 0.95f;
+        hydrationLevel *= 0.95f;
+        epicarpThicknessCm *= 0.95f;
+        mesocarpThicknessCm *= 0.95f;
+        feedSeed(0.005f);
+
+        if (integrity < 0.5f)
+        {
+            std::cout << "Fruit has decayed." << std::endl;
+            return integrity;
+        }
+    }
+    return integrity;
+}
+
+
+Fruit::Seed::Seed(int germinationDays)
+{
+    daysToGerminate = germinationDays;
     std::cout << "A Seed has been constructed!" << std::endl;
 }
 
@@ -663,6 +892,39 @@ int Fruit::Seed::growLeaves (bool germinated, int numLeaves)
     return totalLeaves;
 }
 
+bool Fruit::Seed::germinate (int days)
+{
+    bool germinated = false;
+    bool enoughEnergy = true;
+
+    if (days > 0)
+    {
+        for (int i = 0; i < days; ++i)
+        {
+            storedEnergy -= 0.001f;
+            daysDormant += days;
+            std::cout << "Germinating..." << std::endl;
+            if (storedEnergy < 0.75f)
+            {
+                std::cout << "Seed is no longer viable.  Not enough energy." << std::endl;
+                i = days;
+                enoughEnergy = false;
+            }
+        }
+
+        germinated = enoughEnergy && daysDormant > daysToGerminate;
+    }
+    else
+    {
+        std::cout << "Days must be positive." << std::endl;
+    }
+
+    if (germinated)
+        std::cout << "Seed germinated!" << std::endl;
+    
+    return germinated;
+}
+
 
 struct Tree
 {
@@ -673,16 +935,19 @@ struct Tree
     Branch branch;
     Leaf leaf;
     Fruit fruit;
+    int accumulatedMagic;
 
     int produceLeaves (int numBranches);
     int produceFlowers (int numLeaves);
     void produceFruit (int numFlowers);
+    std::string turnIntoAnEnt(int magic);
 };
 
 Tree::Tree (float barkCm, float sapwoodCm, float heartwoodCm, float pithCm, float branchLength) :
     trunk (barkCm, sapwoodCm, heartwoodCm, pithCm),
     branch (branchLength)
 {
+    accumulatedMagic = 0;
     std::cout << "A Tree has been constructed!" << std::endl;
 }
 
@@ -706,6 +971,32 @@ void Tree::produceFruit (int numFlowers)
     }
 }
 
+std::string Tree::turnIntoAnEnt(int magic)
+{
+    int entThreshold = 200;
+    while (accumulatedMagic < entThreshold && magic > 0)
+    {
+        ++accumulatedMagic;
+        --magic;
+        std::cout << "*";
+    }
+    
+    if (accumulatedMagic >= entThreshold)
+    {
+        std::cout << std::endl;
+        
+        return "Hroom, hm, come, now! Not so hasty. You have called me in, I have come, and now let us talk together!";
+    }
+
+    std::cout << std::endl;
+    
+    return "Nothing happens.";
+}
+
+/************************************************************************
+*************************************************************************/
+
+
 
 int main()
 {
@@ -726,7 +1017,18 @@ int main()
     maxWeightDisplay.changeFont ("Helvetica", 18);
 
     std::cout << std::endl;
-
+        
+    auto newFontSize = maxWeightDisplay.shrinkFontSize (-1);
+    std::cout << "New font size: " << maxWeightDisplay.fontSize << std::endl;
+    newFontSize = maxWeightDisplay.shrinkFontSize (maxWeightDisplay.fontSize);
+    std::cout << "New font size: " << maxWeightDisplay.fontSize << std::endl;
+    newFontSize = maxWeightDisplay.growFontSize (12);
+    std::cout << "New font size: " << maxWeightDisplay.fontSize << std::endl;
+    newFontSize = maxWeightDisplay.growFontSize (-6);
+    std::cout << "New font size: " << maxWeightDisplay.fontSize << std::endl;
+    
+    std::cout << std::endl;
+    
     Treadmill treadmill{ maxWeightDisplay.value };
     std::cout << "Treadmill: maximumWeightAllowanceKg: " << treadmill.maximumWeightAllowanceKg << std::endl;
     std::cout << "Treadmill: currentSpeedKph: " << treadmill.currentSpeedKph << std::endl;
@@ -744,6 +1046,13 @@ int main()
 
     std::cout << std::endl;
 
+    auto distanceRun = treadmill.run (4);
+    std::cout << "Distance run: " << distanceRun << std::endl << std::endl;
+    distanceRun = treadmill.run (10);
+    std::cout << "Distance run: " << distanceRun << std::endl;
+
+    std::cout << std::endl;
+    
     Helicopter helicopter{ 6, 2, 1000.0f, 800.0f };
     std::cout << "Helicopter: altitude: " << helicopter.altitude << std::endl;
     std::cout << "Helicopter: longitude: " << helicopter.longitude << std::endl;
@@ -756,6 +1065,8 @@ int main()
 
     std::cout << std::endl;
 
+    auto rotorVelocity = helicopter.spinUpRotors (240.0f);
+    std::cout << "Rotor velocity: " << rotorVelocity << " RPM.  Ready for lift-off." << std::endl;
     helicopter.ascend (100.0f, 90.0f);
     helicopter.travel (200.0f, 1.0f, 100.0f);
     helicopter.descend (100.0f, 70.0f);
@@ -782,6 +1093,14 @@ int main()
 
     std::cout << std::endl;
 
+    std::cout << "The cat has found a roll of toilet paper." << std::endl;
+    int squaresLeft = tuxedoCat.unrollToiletPaper(3);
+    std::cout << "Squares left: " << squaresLeft << std::endl;
+    squaresLeft = tuxedoCat.unrollToiletPaper(5, squaresLeft);
+    std::cout << "Squares left: " << squaresLeft << std::endl;
+    
+    std::cout << std::endl;
+
     Liquid water{ 100.0, 0.0, 0.89 };
     std::cout << "Liquid: boilingPointC: " << water.boilingPointC << std::endl;
     std::cout << "Liquid: freezingPointC: " << water.freezingPointC << std::endl;
@@ -797,6 +1116,13 @@ int main()
 
     std::cout << std::endl;
 
+    double humidity = 4.0;
+    std::cout << water.volumeL << "L of water under " << humidity << " humidity at a temperature of " << water.temperatureC << "C" << std::endl;
+    humidity = water.condensate (humidity, 25.0);
+    std::cout << water.volumeL << "L of water under " << humidity << " humidity at a temperature of " << water.temperatureC << "C" << std::endl;
+    
+    std::cout << std::endl;
+    
     Roots roots;
     std::cout << "Roots: primaryRoots: " << roots.primaryRoots << std::endl;
     std::cout << "Roots: secondaryRoots: " << roots.secondaryRoots << std::endl;
@@ -816,6 +1142,20 @@ int main()
 
     std::cout << std::endl;
 
+    std::cout << "Roots: secondaryRoots: " << roots.secondaryRoots << std::endl;
+    std::cout << "Roots: totalVolumeL: " << roots.totalVolumeL << std::endl;
+    std::cout << "Roots: totalLengthKm: " << roots.totalLengthKm << std::endl;
+    std::cout << "Roots: energy: " << roots.energy << std::endl;
+    std::cout << "Roots: nutrients: " << roots.nutrients << std::endl;
+    roots.grow ();
+    std::cout << "Roots: secondaryRoots: " << roots.secondaryRoots << std::endl;
+    std::cout << "Roots: totalVolumeL: " << roots.totalVolumeL << std::endl;
+    std::cout << "Roots: totalLengthKm: " << roots.totalLengthKm << std::endl;
+    std::cout << "Roots: energy: " << roots.energy << std::endl;
+    std::cout << "Roots: nutrients: " << roots.nutrients << std::endl;
+    
+    std::cout << std::endl;
+    
     Trunk trunk{ 2.0f, 4.0f, 20.0f, 0.5f };
     std::cout << "Trunk: barkThicknessCm: " << trunk.barkThicknessCm << std::endl;
     std::cout << "Trunk: sapwoodThicknessCm: " << trunk.sapwoodThicknessCm << std::endl;
@@ -831,6 +1171,10 @@ int main()
 
     std::cout << std::endl;
 
+    auto pain = trunk.receiveCarving("I heart C++");
+    std::cout << "Trunk endured " << pain << " pain for your cause." << std::endl;
+    std::cout << std::endl;
+    
     Branch branch{ 10.0f };
     std::cout << "Branch: lengthCm: " << branch.lengthCm << std::endl;
     std::cout << "Branch: childBranches: " << branch.childBranches << std::endl;
@@ -844,6 +1188,11 @@ int main()
     branch.transportWater (5.0f);
     branch.transportNutrients (2.5f);
 
+    std::cout << std::endl;
+    
+    std::cout << branch.makeLeaves() << " new leaves have been grown." << std::endl;
+    std::cout << "Branch: leaves: " << branch.leaves << std::endl;
+    
     std::cout << std::endl;
 
     Leaf leaf;
@@ -861,6 +1210,13 @@ int main()
 
     std::cout << std::endl;
 
+    std::cout << "Leaf height: " << leaf.distanceFromGround << "m." << std::endl;
+    auto timeToFall = leaf.fall ();
+    std::cout << "Leaf fell in " << timeToFall << " seconds." << std::endl;
+    std::cout << "Leaf height: " << leaf.distanceFromGround << "m." << std::endl;
+    
+    std::cout << std::endl;
+    
     Fruit fruit;
     std::cout << "Fruit: endospermLevel: " << fruit.endospermLevel << std::endl;
     std::cout << "Fruit: hydrationLevel: " << fruit.hydrationLevel << std::endl;
@@ -869,15 +1225,25 @@ int main()
 
     std::cout << std::endl;
 
-    fruit.protectSeed (0.1f);
-    std::cout << std::endl << fruit.feedSeed (0.5f) << " total energy stored." << std::endl;
+    fruit.hydrationLevel = 2.0f;
+    fruit.protectSeed (1.0f);
+    std::cout << std::endl << fruit.feedSeed (1.5f) << " total energy stored." << std::endl;
 
     std::cout << std::endl;
 
+    float fruitIntegrity = fruit.decay(5);
+    std::cout << "Fruit integrity: " << fruitIntegrity << std::endl;
+    fruitIntegrity = fruit.decay(10);
+    std::cout << "Fruit integrity: " << fruitIntegrity << std::endl;
+    fruitIntegrity = fruit.decay(7);
+    std::cout << "Fruit integrity: " << fruitIntegrity << std::endl;
+    
+    std::cout << std::endl;
+    
     Fruit::Seed newSeed = fruit.disperseSeed (10.0f);
     std::cout << "Seed: weightGrams: " << newSeed.weightGrams << std::endl;
     std::cout << "Seed: coatIntegrity: " << newSeed.coatIntegrity << std::endl;
-    std::cout << "Seed: germinationDays: " << newSeed.germinationDays << std::endl;
+    std::cout << "Seed: daysToGerminate: " << newSeed.daysToGerminate << std::endl;
     std::cout << "Seed: storedEnergy: " << newSeed.storedEnergy << std::endl;
     std::cout << "Seed: daysDormant: " << newSeed.daysDormant << std::endl;
     std::cout << "Seed: totalLeaves: " << newSeed.totalLeaves << std::endl;
@@ -895,35 +1261,45 @@ int main()
 
     std::cout << std::endl;
 
-    Fruit::Seed seed;
+    std::cout << tree.turnIntoAnEnt(100) << std::endl;
+    std::cout << tree.turnIntoAnEnt(100) << std::endl;
+    
+    std::cout << std::endl;
+    
+    Fruit::Seed seed{20};
+    seed.storedEnergy = 1.0f;
     std::cout << "Seed: weightGrams: " << seed.weightGrams << std::endl;
     std::cout << "Seed: coatIntegrity: " << seed.coatIntegrity << std::endl;
-    std::cout << "Seed: germinationDays: " << seed.germinationDays << std::endl;
+    std::cout << "Seed: daysToGerminate: " << seed.daysToGerminate << std::endl;
     std::cout << "Seed: storedEnergy: " << seed.storedEnergy << std::endl;
     std::cout << "Seed: daysDormant: " << seed.daysDormant << std::endl;
     std::cout << "Seed: totalLeaves: " << seed.totalLeaves << std::endl;
 
     std::cout << std::endl;
 
-    while (!seed.growRoot (true))
+    auto germinated = seed.germinate (25.0f);
+    
+    std::cout << std::endl;
+
+    while (germinated && !seed.growRoot (germinated))
     {
         std::cout << "Seed root is not yet ready." << std::endl;
         std::cout << "Time passes..." << std::endl;
     }
 
-    while (!seed.growStem (true))
+    while (germinated && !seed.growStem (germinated))
     {
         std::cout << "Seed stem is not yet ready." << std::endl;
         std::cout << "Time passes..." << std::endl;
     }
 
-    while (seed.growLeaves (true, 10) < 10)
+    while (germinated && seed.growLeaves (germinated, 10) < 10)
     {
         std::cout << "Seed leaves are not yet ready." << std::endl;
         std::cout << "Time passes..." << std::endl;
     }
 
-    seed.growLeaves (true, 10);
+    seed.growLeaves (germinated, 10);
 
     std::cout << std::endl;
 
