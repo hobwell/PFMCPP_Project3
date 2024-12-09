@@ -183,11 +183,13 @@ int Treadmill::ValueDisplay::growFontSize (int numSteps)
     if (numSteps > 0)
     {
         std::cout << "Growing font size ";
+        
         for (int i = 0; i < numSteps; ++i)
         {
             fontSize += 1;
             std::cout << ".";
         }
+        
         std::cout << std::endl;
     }
     else 
@@ -204,14 +206,17 @@ int Treadmill::ValueDisplay::shrinkFontSize (int numSteps)
     {
         std::cout << "Shrinking font size ";
         int i = 0;
+        
         while (i < numSteps && fontSize > 0)
         {
             fontSize -= 1;
             std::cout << ".";
+            
             if (fontSize < 1)
             {
                 std::cout << std::endl << "Font size can't shrink any further!";
             }
+            
             i += 1;
         }
         
@@ -280,6 +285,7 @@ float Helicopter::spinUpRotors (float timeInSeconds = 180.0f)
     float rotationalAcceleration = 0.85f;
     std::cout << "Spinning up rotors: Whee";
     float timeElapsed = 0.0f;
+    
     while (timeInSeconds > timeElapsed)
     {
         rotorVelocity += (rotationalAcceleration * timeElapsed);
@@ -371,6 +377,7 @@ int Cat::unrollToiletPaper (int numSwipes, int squaresRemaining)
             numSwipes -= 1;
             squaresRemaining -= 10;
         }
+        
         std::cout << std::endl;
     }
     else
@@ -439,6 +446,7 @@ double Liquid::condensate (double humidity, double surfaceTemperatureC)
                 surfaceTemperatureC += 0.9;
                 temperatureC -= 0.9;
             }
+            
             std::cout << "Equllibrium reached." << std::endl;
         }
         else
@@ -518,6 +526,7 @@ void Roots::grow()
         nutrients -= 0.02f;
         std::cout << "Added a root." << std::endl;
     }
+    
     std::cout << "Roots have stopped growing due a lack of energy or nutrients." << std::endl;
 }
 
@@ -590,11 +599,13 @@ float Trunk::resistWind (float speedKph)
 int Trunk::receiveCarving (std::string message)
 {
     int painReceived = 0;
+    
     for(size_t i = 0; i < message.length(); ++i)
     {        
         std::cout << message[i] << std::endl;
         painReceived += i;
     }
+    
     return painReceived;
 }
 
@@ -647,6 +658,7 @@ void Branch::transportNutrients (float volumeL)
 int Branch::makeLeaves()
 {
     int newLeaves = 0;
+    
     for (int i = 0; i < childBranches; ++i)
     {
         newLeaves += 2;
