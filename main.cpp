@@ -107,7 +107,7 @@ struct Treadmill
     void rotateBelt (float speeedKph);
     void incline (float inclinationDegrees);
     void display (ValueDisplay displayValue);
-    float run(int numSteps, float strideLength = 0.00065f);
+    float run (int numSteps, float strideLength = 0.00065f);
 };
 
 Treadmill::Treadmill (float weightAllowance)
@@ -137,7 +137,7 @@ void Treadmill::display (ValueDisplay displayValue)
     std::cout << displayValue.name << ": " << displayValue.value << " " << displayValue.unit << std::endl;
 }
 
-float Treadmill::run(int numSteps, float strideLength)
+float Treadmill::run (int numSteps, float strideLength)
 {
     for (int i = 0; i < numSteps; ++i)
     {
@@ -208,12 +208,13 @@ int Treadmill::ValueDisplay::shrinkFontSize (int numSteps)
         {
             fontSize -= 1;
             std::cout << ".";
-            i += 1;
             if (fontSize < 1)
             {
                 std::cout << std::endl << "Font size can't shrink any further!";
             }
+            i += 1;
         }
+        
         std::cout << std::endl;
     }
     else 
@@ -242,7 +243,7 @@ struct Helicopter
     void ascend (float speedKph, float timeInSeconds);
     void travel (float speedKph, float bearingRads, float distanceKm);
     void descend (float speedKph, float timeInSeconds);
-    float spinUpRotors(float timeInSeconds);
+    float spinUpRotors (float timeInSeconds);
 };
 
 Helicopter::Helicopter (int seats, int rotors, float fuelCapacity, float maxRange)
@@ -274,7 +275,7 @@ void Helicopter::travel (float speedKph, float bearingRads, float distanceKm)
     longitude += (speedKph / 3600) * distanceKm * bearingRads;
 }
 
-float Helicopter::spinUpRotors(float timeInSeconds = 180.0f)
+float Helicopter::spinUpRotors (float timeInSeconds = 180.0f)
 {
     float rotationalAcceleration = 0.85f;
     std::cout << "Spinning up rotors: Whee";
@@ -282,9 +283,10 @@ float Helicopter::spinUpRotors(float timeInSeconds = 180.0f)
     while (timeInSeconds > timeElapsed)
     {
         rotorVelocity += (rotationalAcceleration * timeElapsed);
-        timeElapsed += 1.0f;
         std::cout << "e";
+        timeElapsed += 1.0f;
     }
+    
     std::cout << "!" << std::endl;
 
     return rotorVelocity / 60.0f; // convert hz to rpm
@@ -304,7 +306,7 @@ struct Cat
     bool hunt (std::string creature);
     void eat (float amountOfFoodKg);
     void purr (float volumeDb);
-    int unrollToiletPaper(int numSwipes = 4, int squaresRemaining = 400);
+    int unrollToiletPaper (int numSwipes = 4, int squaresRemaining = 400);
 };
 
 Cat::Cat (std::string pattern, std::string colour)
@@ -359,7 +361,7 @@ void Cat::purr (float volumeDb)
     }
 }
 
-int Cat::unrollToiletPaper(int numSwipes, int squaresRemaining)
+int Cat::unrollToiletPaper (int numSwipes, int squaresRemaining)
 {
     if (numSwipes > 0)
     {
@@ -375,6 +377,7 @@ int Cat::unrollToiletPaper(int numSwipes, int squaresRemaining)
     {
         std::cout << "Luckily, cats haven't figured out how to take negatve swipes yet." << std::endl;
     }
+    
     return squaresRemaining;
 }
 
@@ -468,7 +471,7 @@ struct Roots
     void absorbWater (float volumeL);
     void absorbNutrients (float volumeL);
     float storeEnergy (float newEnergy);
-    void grow ();
+    void grow();
 };
 
 Roots::Roots() :
@@ -503,7 +506,7 @@ float Roots::storeEnergy (float newEnergy)
     return energy;
 }
 
-void Roots::grow ()
+void Roots::grow()
 {
     while (energy > 0.3f && nutrients > 0.4f)
     {
@@ -715,31 +718,37 @@ void Leaf::changeColour (std::string newColour)
 float Leaf::fall()
 {
     float time = 0.0f;
+    
     if (distanceFromGround > 0.0f)
     {
         changeColour("brown");
         float gravity = 9.81f;
         float area = (lengthCm / 100.0f) * (widthCm / 100.0f);
         float weight = (lengthCm * widthCm * 0.0005f) / 1000.0f;
+        
         while (distanceFromGround > 0.0f) 
         {
             float distanceTravelled = gravity * (weight / (area * 0.15f));
             distanceFromGround -= distanceTravelled;
             std::cout << "down..." << std::endl;
+            
             if (distanceFromGround < 0.0f)
             {
                 distanceFromGround = 0.0f;
                 std::cout << "bounce..." << std::endl;
                 time += 0.5f;
             }
+            
             time += 1.0f;
         }
+        
         std::cout << "Leaf fell." << std::endl;
     }
     else
     {
         std::cout << "Leaf has already fallen." << std::endl;
     }
+    
     return time;
 }
 
@@ -809,6 +818,7 @@ float Fruit::feedSeed (float energy)
 float Fruit::decay (int days)
 {
     float integrity = (endospermLevel + hydrationLevel + epicarpThicknessCm + mesocarpThicknessCm) / 4.0f;
+    
     for (int i = 0; i < days; ++i)
     {
         endospermLevel *= 0.95f;
@@ -823,6 +833,7 @@ float Fruit::decay (int days)
             return integrity;
         }
     }
+    
     return integrity;
 }
 
@@ -904,6 +915,7 @@ bool Fruit::Seed::germinate (int days)
             storedEnergy -= 0.001f;
             daysDormant += days;
             std::cout << "Germinating..." << std::endl;
+            
             if (storedEnergy < 0.75f)
             {
                 std::cout << "Seed is no longer viable.  Not enough energy." << std::endl;
@@ -940,7 +952,7 @@ struct Tree
     int produceLeaves (int numBranches);
     int produceFlowers (int numLeaves);
     void produceFruit (int numFlowers);
-    std::string turnIntoAnEnt(int magic);
+    std::string turnIntoAnEnt (int magic);
 };
 
 Tree::Tree (float barkCm, float sapwoodCm, float heartwoodCm, float pithCm, float branchLength) :
@@ -971,9 +983,10 @@ void Tree::produceFruit (int numFlowers)
     }
 }
 
-std::string Tree::turnIntoAnEnt(int magic)
+std::string Tree::turnIntoAnEnt (int magic)
 {
     int entThreshold = 200;
+    
     while (accumulatedMagic < entThreshold && magic > 0)
     {
         ++accumulatedMagic;
@@ -1094,9 +1107,9 @@ int main()
     std::cout << std::endl;
 
     std::cout << "The cat has found a roll of toilet paper." << std::endl;
-    int squaresLeft = tuxedoCat.unrollToiletPaper(3);
+    int squaresLeft = tuxedoCat.unrollToiletPaper (3);
     std::cout << "Squares left: " << squaresLeft << std::endl;
-    squaresLeft = tuxedoCat.unrollToiletPaper(5, squaresLeft);
+    squaresLeft = tuxedoCat.unrollToiletPaper (5, squaresLeft);
     std::cout << "Squares left: " << squaresLeft << std::endl;
     
     std::cout << std::endl;
@@ -1147,7 +1160,9 @@ int main()
     std::cout << "Roots: totalLengthKm: " << roots.totalLengthKm << std::endl;
     std::cout << "Roots: energy: " << roots.energy << std::endl;
     std::cout << "Roots: nutrients: " << roots.nutrients << std::endl;
-    roots.grow ();
+    
+    roots.grow();
+    
     std::cout << "Roots: secondaryRoots: " << roots.secondaryRoots << std::endl;
     std::cout << "Roots: totalVolumeL: " << roots.totalVolumeL << std::endl;
     std::cout << "Roots: totalLengthKm: " << roots.totalLengthKm << std::endl;
@@ -1171,7 +1186,7 @@ int main()
 
     std::cout << std::endl;
 
-    auto pain = trunk.receiveCarving("I heart C++");
+    auto pain = trunk.receiveCarving ("I heart C++");
     std::cout << "Trunk endured " << pain << " pain for your cause." << std::endl;
     std::cout << std::endl;
     
@@ -1211,7 +1226,7 @@ int main()
     std::cout << std::endl;
 
     std::cout << "Leaf height: " << leaf.distanceFromGround << "m." << std::endl;
-    auto timeToFall = leaf.fall ();
+    auto timeToFall = leaf.fall();
     std::cout << "Leaf fell in " << timeToFall << " seconds." << std::endl;
     std::cout << "Leaf height: " << leaf.distanceFromGround << "m." << std::endl;
     
@@ -1231,11 +1246,11 @@ int main()
 
     std::cout << std::endl;
 
-    float fruitIntegrity = fruit.decay(5);
+    float fruitIntegrity = fruit.decay (5);
     std::cout << "Fruit integrity: " << fruitIntegrity << std::endl;
-    fruitIntegrity = fruit.decay(10);
+    fruitIntegrity = fruit.decay (10);
     std::cout << "Fruit integrity: " << fruitIntegrity << std::endl;
-    fruitIntegrity = fruit.decay(7);
+    fruitIntegrity = fruit.decay (7);
     std::cout << "Fruit integrity: " << fruitIntegrity << std::endl;
     
     std::cout << std::endl;
@@ -1261,8 +1276,8 @@ int main()
 
     std::cout << std::endl;
 
-    std::cout << tree.turnIntoAnEnt(100) << std::endl;
-    std::cout << tree.turnIntoAnEnt(100) << std::endl;
+    std::cout << tree.turnIntoAnEnt (100) << std::endl;
+    std::cout << tree.turnIntoAnEnt (100) << std::endl;
     
     std::cout << std::endl;
     
